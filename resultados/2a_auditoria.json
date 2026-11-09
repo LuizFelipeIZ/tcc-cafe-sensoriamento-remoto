@@ -1,0 +1,75 @@
+{
+ "producao": {
+  "linhas": 360,
+  "faltando": [],
+  "sobrando": [],
+  "duplicadas": 0,
+  "nomes_fora_da_lista": []
+ },
+ "clima": {
+  "linhas": 360,
+  "faltando": [],
+  "sobrando": [],
+  "duplicadas": 0,
+  "nomes_fora_da_lista": []
+ },
+ "rendimento": {
+  "faltantes": 0,
+  "nao_positivos": 0,
+  "min_sacas_ha": 5.2,
+  "max_sacas_ha": 51.0,
+  "diferenca_maxima_vs_producao_area_pct": 0.2
+ },
+ "repeticoes": {
+  "total_de_safras_repetidas": 42,
+  "municipios_com_repeticao": 9,
+  "por_safra": {
+   "1992": 2,
+   "1993": 6,
+   "1998": 5,
+   "1999": 1,
+   "2000": 9,
+   "2001": 9,
+   "2002": 3,
+   "2004": 1,
+   "2012": 1,
+   "2014": 1,
+   "2015": 1,
+   "2020": 1,
+   "2022": 1,
+   "2023": 1
+  },
+  "por_municipio": {
+   "Arceburgo": 4,
+   "Cabo Verde": 4,
+   "Guaranesia": 5,
+   "Guaxupe": 5,
+   "Itamogi": 3,
+   "Jacui": 5,
+   "Juruaia": 6,
+   "Muzambinho": 5,
+   "Nova Resende": 5
+  },
+  "fracao_entre_1991_e_2002_pct": 83.3
+ },
+ "matriz": {
+  "linhas": 360,
+  "colunas": [
+   "Municipio",
+   "Ano",
+   "Area_Colhida_ha",
+   "Producao_t",
+   "Rendimento_kg_ha",
+   "Tmin_Abs",
+   "Precip_Anual",
+   "Dias_Abaixo_3C",
+   "Precip_Florada",
+   "Tmin_Abs_Florada",
+   "Precip_Enchimento_Graos",
+   "Tmin_Abs_Enchimento_Graos",
+   "Precip_Inverno_Risco_Geada",
+   "Tmin_Abs_Inverno_Risco_Geada"
+  ],
+  "celulas_vazias": 0
+ }
+}

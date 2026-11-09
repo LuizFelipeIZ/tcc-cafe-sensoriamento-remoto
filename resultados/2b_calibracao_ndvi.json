@@ -1,0 +1,138 @@
+{
+ "validacao_safra_fora": {
+  "NDVI_Vigor_Maximo | L7->L8": {
+   "N": 90,
+   "R2": 0.534,
+   "OLS": {
+    "a": 0.47,
+    "b": 0.449,
+    "MAE_safra_fora": 0.0073,
+    "vies": -0.0001,
+    "razao_desvio_padrao": 0.771
+   },
+   "RMA": {
+    "a": 0.335,
+    "b": 0.614,
+    "MAE_safra_fora": 0.0078,
+    "vies": -0.0001,
+    "razao_desvio_padrao": 1.066
+   }
+  },
+  "NDVI_Vigor_Maximo | L5->L7": {
+   "N": 110,
+   "R2": 0.583,
+   "OLS": {
+    "a": 0.197,
+    "b": 0.79,
+    "MAE_safra_fora": 0.015,
+    "vies": -0.0002,
+    "razao_desvio_padrao": 0.782
+   },
+   "RMA": {
+    "a": 0.003,
+    "b": 1.035,
+    "MAE_safra_fora": 0.0162,
+    "vies": -0.0003,
+    "razao_desvio_padrao": 1.048
+   }
+  },
+  "NDVI_Estresse_Maximo | L7->L8": {
+   "N": 90,
+   "R2": 0.736,
+   "OLS": {
+    "a": 0.141,
+    "b": 0.862,
+    "MAE_safra_fora": 0.0216,
+    "vies": -0.0001,
+    "razao_desvio_padrao": 0.85
+   },
+   "RMA": {
+    "a": 0.063,
+    "b": 1.004,
+    "MAE_safra_fora": 0.0222,
+    "vies": -0.0007,
+    "razao_desvio_padrao": 1.023
+   }
+  },
+  "NDVI_Estresse_Maximo | L5->L7": {
+   "N": 110,
+   "R2": 0.718,
+   "OLS": {
+    "a": 0.065,
+    "b": 0.906,
+    "MAE_safra_fora": 0.0265,
+    "vies": -0.0013,
+    "razao_desvio_padrao": 0.812
+   },
+   "RMA": {
+    "a": -0.023,
+    "b": 1.069,
+    "MAE_safra_fora": 0.0265,
+    "vies": -0.0003,
+    "razao_desvio_padrao": 1.004
+   }
+  },
+  "NDVI_Florada | L7->L8": {
+   "N": 90,
+   "R2": 0.726,
+   "OLS": {
+    "a": 0.113,
+    "b": 0.894,
+    "MAE_safra_fora": 0.0259,
+    "vies": -0.0008,
+    "razao_desvio_padrao": 0.861
+   },
+   "RMA": {
+    "a": 0.021,
+    "b": 1.05,
+    "MAE_safra_fora": 0.0277,
+    "vies": -0.0017,
+    "razao_desvio_padrao": 1.048
+   }
+  },
+  "NDVI_Florada | L5->L7": {
+   "N": 110,
+   "R2": 0.755,
+   "OLS": {
+    "a": 0.163,
+    "b": 0.749,
+    "MAE_safra_fora": 0.0235,
+    "vies": -0.0004,
+    "razao_desvio_padrao": 0.869
+   },
+   "RMA": {
+    "a": 0.094,
+    "b": 0.861,
+    "MAE_safra_fora": 0.0256,
+    "vies": 0.0008,
+    "razao_desvio_padrao": 1.055
+   }
+  }
+ },
+ "coeficientes_rma": {
+  "NDVI_Vigor_Maximo | L7->L8": {
+   "a": 0.3350133402581519,
+   "b": 0.6142650130146368
+  },
+  "NDVI_Vigor_Maximo | L5->L7": {
+   "a": 0.0029828292563008896,
+   "b": 1.0345723057001217
+  },
+  "NDVI_Estresse_Maximo | L7->L8": {
+   "a": 0.06254597358974767,
+   "b": 1.0043254715799115
+  },
+  "NDVI_Estresse_Maximo | L5->L7": {
+   "a": -0.023284134430948566,
+   "b": 1.0691962784559077
+  },
+  "NDVI_Florada | L7->L8": {
+   "a": 0.020930680076800767,
+   "b": 1.0495615530942062
+  },
+  "NDVI_Florada | L5->L7": {
+   "a": 0.09444464089734994,
+   "b": 0.861390101277979
+  }
+ }
+}

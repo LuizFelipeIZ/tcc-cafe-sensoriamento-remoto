@@ -1,0 +1,14 @@
+{
+ "kfold_so_tendencia_MAE": 4.33,
+ "kfold_media_dos_vizinhos_mesma_safra_MAE": 4.34,
+ "safra_inteira_fora_completo_MAE": 6.68,
+ "safra_inteira_fora_controles_MAE": 6.39,
+ "safra_inteira_fora_sem_ndvi_MAE": 6.84,
+ "safra_inteira_fora_baseline_M_MAE": 6.26,
+ "wilcoxon_completo_vs_baseline": [
+  0.0867,
+  0.3259,
+  17,
+  35
+ ]
+}

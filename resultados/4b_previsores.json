@@ -1,0 +1,115 @@
+{
+ "seca": {
+  "N": 40,
+  "MAE_rf": 3.99,
+  "MAE_so_controles": 4.27,
+  "MAE_baseline_M": 4.21,
+  "p_wilcoxon_rf_vs_baseline": 0.91,
+  "erro_percentual_rf": 13.8,
+  "cobertura_p10_p90_pct": 67.5,
+  "MAE_por_safra": {
+   "2014": {
+    "erro_rf": 2.67,
+    "erro_so_controles": 3.5,
+    "erro_baseline_M": 3.91
+   },
+   "2015": {
+    "erro_rf": 3.38,
+    "erro_so_controles": 3.11,
+    "erro_baseline_M": 1.25
+   },
+   "2016": {
+    "erro_rf": 5.98,
+    "erro_so_controles": 6.21,
+    "erro_baseline_M": 6.45
+   },
+   "2017": {
+    "erro_rf": 3.93,
+    "erro_so_controles": 4.27,
+    "erro_baseline_M": 5.22
+   }
+  }
+ },
+ "geada": {
+  "N": 70,
+  "MAE_rf": 6.9,
+  "MAE_so_controles": 7.28,
+  "MAE_baseline_M": 5.91,
+  "p_wilcoxon_rf_vs_baseline": 0.984,
+  "erro_percentual_rf": 41.5,
+  "cobertura_p10_p90_pct": 70.0,
+  "MAE_por_safra": {
+   "1994": {
+    "erro_rf": 2.8,
+    "erro_so_controles": 2.27,
+    "erro_baseline_M": 2.88
+   },
+   "1995": {
+    "erro_rf": 5.39,
+    "erro_so_controles": 7.45,
+    "erro_baseline_M": 7.22
+   },
+   "2000": {
+    "erro_rf": 11.57,
+    "erro_so_controles": 11.87,
+    "erro_baseline_M": 6.77
+   },
+   "2001": {
+    "erro_rf": 13.7,
+    "erro_so_controles": 9.76,
+    "erro_baseline_M": 6.06
+   },
+   "2021": {
+    "erro_rf": 4.96,
+    "erro_so_controles": 10.55,
+    "erro_baseline_M": 8.88
+   },
+   "2022": {
+    "erro_rf": 5.7,
+    "erro_so_controles": 3.51,
+    "erro_baseline_M": 6.77
+   },
+   "2023": {
+    "erro_rf": 4.18,
+    "erro_so_controles": 5.57,
+    "erro_baseline_M": 2.8
+   }
+  }
+ },
+ "geada_sem_2000_2001": {
+  "N": 50,
+  "MAE_rf": 4.61,
+  "MAE_so_controles": 5.87,
+  "MAE_baseline_M": 5.71,
+  "p_wilcoxon_rf_vs_baseline": 0.015,
+  "erro_percentual_rf": 26.9,
+  "cobertura_p10_p90_pct": 74.0,
+  "MAE_por_safra": {
+   "1994": {
+    "erro_rf": 2.8,
+    "erro_so_controles": 2.27,
+    "erro_baseline_M": 2.88
+   },
+   "1995": {
+    "erro_rf": 5.39,
+    "erro_so_controles": 7.45,
+    "erro_baseline_M": 7.22
+   },
+   "2021": {
+    "erro_rf": 4.96,
+    "erro_so_controles": 10.55,
+    "erro_baseline_M": 8.88
+   },
+   "2022": {
+    "erro_rf": 5.7,
+    "erro_so_controles": 3.51,
+    "erro_baseline_M": 6.77
+   },
+   "2023": {
+    "erro_rf": 4.18,
+    "erro_so_controles": 5.57,
+    "erro_baseline_M": 2.8
+   }
+  }
+ }
+}

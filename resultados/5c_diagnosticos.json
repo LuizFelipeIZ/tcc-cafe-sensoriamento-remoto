@@ -1,0 +1,81 @@
+{
+ "vies_por_faixa": {
+  "0-12 sacas/ha": {
+   "n": 35,
+   "vies_medio": 7.8
+  },
+  "12-20 sacas/ha": {
+   "n": 105,
+   "vies_medio": 3.03
+  },
+  "20-30 sacas/ha": {
+   "n": 140,
+   "vies_medio": 0.03
+  },
+  "30-35 sacas/ha": {
+   "n": 41,
+   "vies_medio": -4.04
+  },
+  "35-60 sacas/ha": {
+   "n": 29,
+   "vies_medio": -13.29
+  }
+ },
+ "municipios_em_que_o_RF_errou_menos": 9,
+ "erro_por_municipio": {
+  "Itamogi": {
+   "erro_rf": 6.92,
+   "erro_baseline": 8.66,
+   "reducao_pct": 20.12
+  },
+  "Monte Belo": {
+   "erro_rf": 6.84,
+   "erro_baseline": 6.23,
+   "reducao_pct": -9.76
+  },
+  "Nova Resende": {
+   "erro_rf": 5.79,
+   "erro_baseline": 7.27,
+   "reducao_pct": 20.33
+  },
+  "Arceburgo": {
+   "erro_rf": 4.69,
+   "erro_baseline": 5.52,
+   "reducao_pct": 14.94
+  },
+  "Guaranesia": {
+   "erro_rf": 4.62,
+   "erro_baseline": 6.09,
+   "reducao_pct": 24.15
+  },
+  "Jacui": {
+   "erro_rf": 4.29,
+   "erro_baseline": 6.03,
+   "reducao_pct": 28.92
+  },
+  "Juruaia": {
+   "erro_rf": 4.21,
+   "erro_baseline": 4.81,
+   "reducao_pct": 12.46
+  },
+  "Muzambinho": {
+   "erro_rf": 4.12,
+   "erro_baseline": 5.73,
+   "reducao_pct": 28.1
+  },
+  "Cabo Verde": {
+   "erro_rf": 3.57,
+   "erro_baseline": 6.35,
+   "reducao_pct": 43.71
+  },
+  "Guaxupe": {
+   "erro_rf": 2.97,
+   "erro_baseline": 5.9,
+   "reducao_pct": 49.57
+  }
+ },
+ "coeficiente_linear_da_anomalia_bienal": {
+  "serie_completa": 0.13,
+  "sem_1991_2002": -0.21
+ }
+}

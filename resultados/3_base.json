@@ -1,0 +1,13 @@
+{
+ "N": 350,
+ "municipios": 10,
+ "safras": [
+  1989,
+  2023
+ ],
+ "rendimento_sacas_ha": {
+  "media": 22.51,
+  "min": 5.2,
+  "max": 51.0
+ }
+}

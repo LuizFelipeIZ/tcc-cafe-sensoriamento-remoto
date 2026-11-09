@@ -1,0 +1,9 @@
+conjunto,modelo,MAE,p_obs [Holm],p_safra [Holm]
+serie_completa,completo,4.8,,
+serie_completa,sem_ndvi,4.9,0.0181 [0.1086],0.1788 [0.5364]
+serie_completa,sem_clima,4.76,0.5803 [1.0],0.8272 [1.0]
+serie_completa,controles,4.54,0.0517 [0.2585],0.0674 [0.2696]
+sem_1991_2002,completo,4.14,,
+sem_1991_2002,sem_ndvi,4.17,0.4351 [1.0],0.6434 [1.0]
+sem_1991_2002,sem_clima,4.34,0.1908 [0.954],0.0858 [0.5148]
+sem_1991_2002,controles,4.18,0.5858 [1.0],0.754 [1.0]

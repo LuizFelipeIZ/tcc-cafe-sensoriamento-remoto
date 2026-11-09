@@ -1,0 +1,42 @@
+{
+ "baseline_M_serie": {
+  "MAE": 6.26,
+  "RMSE": 8.11,
+  "R2": 0.054
+ },
+ "groupkfold_municipio_completo": {
+  "MAE": 4.52,
+  "RMSE": 6.16,
+  "R2": 0.455
+ },
+ "holdout_2014_2023_completo": {
+  "MAE": 4.36,
+  "RMSE": 5.6,
+  "R2": -0.005
+ },
+ "groupkfold_municipio_sem_ndvi": {
+  "MAE": 4.63,
+  "RMSE": 6.32,
+  "R2": 0.426
+ },
+ "holdout_2014_2023_sem_ndvi": {
+  "MAE": 5.06,
+  "RMSE": 6.6,
+  "R2": -0.396
+ },
+ "groupkfold_municipio_controles": {
+  "MAE": 4.46,
+  "RMSE": 6.16,
+  "R2": 0.455
+ },
+ "holdout_2014_2023_controles": {
+  "MAE": 5.25,
+  "RMSE": 6.64,
+  "R2": -0.414
+ },
+ "holdout_2014_2023_baseline_M": {
+  "MAE": 4.85,
+  "RMSE": 6.15,
+  "R2": -0.214
+ }
+}

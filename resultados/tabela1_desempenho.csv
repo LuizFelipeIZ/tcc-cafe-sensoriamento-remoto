@@ -1,0 +1,7 @@
+conjunto,modelo,MAE,RMSE,R2,dp_MAE,Wilcoxon_vs_M
+serie_completa,Persistência histórica M(t),6.26,8.11,0.054,,
+serie_completa,Rendimento de dois anos antes Y(t-2),6.24,8.66,-0.055,,
+serie_completa,Random Forest (clima + NDVI),4.8,6.48,0.396,0.38,"p obs=0.0, p safra=0.0475"
+sem_1991_2002,Persistência histórica M(t),6.2,7.79,0.104,,
+sem_1991_2002,Rendimento de dois anos antes Y(t-2),5.73,7.52,0.189,,
+sem_1991_2002,Random Forest (clima + NDVI),4.14,5.36,0.576,0.37,"p obs=0.0, p safra=0.0277"

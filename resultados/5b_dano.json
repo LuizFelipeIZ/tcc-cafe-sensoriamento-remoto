@@ -1,0 +1,115 @@
+{
+ "tabela": [
+  {
+   "Safra": 1994,
+   "Evento": "Geada de 1994",
+   "Observado": 21.2,
+   "M(t)": 19.7,
+   "Observado - M(t)": 1.5,
+   "Efeito do clima": -0.4,
+   "Efeito do NDVI": 0.2,
+   "Variável climática de maior efeito negativo": "Precip_Florada_t1",
+   "Efeito dela": -0.4
+  },
+  {
+   "Safra": 1995,
+   "Evento": "Após a geada de 1994",
+   "Observado": 13.1,
+   "M(t)": 20.3,
+   "Observado - M(t)": -7.2,
+   "Efeito do clima": -0.7,
+   "Efeito do NDVI": -1.3,
+   "Variável climática de maior efeito negativo": "Precip_Florada_t1",
+   "Efeito dela": -1.3
+  },
+  {
+   "Safra": 2000,
+   "Evento": "Geada de 2000",
+   "Observado": 22.4,
+   "M(t)": 28.5,
+   "Observado - M(t)": -6.1,
+   "Efeito do clima": 1.2,
+   "Efeito do NDVI": -0.3,
+   "Variável climática de maior efeito negativo": "Tmin_Abs_Inverno_Risco_Geada_t1",
+   "Efeito dela": -0.1
+  },
+  {
+   "Safra": 2001,
+   "Evento": "Após a geada de 2000",
+   "Observado": 20.2,
+   "M(t)": 26.2,
+   "Observado - M(t)": -6.1,
+   "Efeito do clima": 1.0,
+   "Efeito do NDVI": 0.2,
+   "Variável climática de maior efeito negativo": "Tmin_Abs_Enchimento_Graos",
+   "Efeito dela": -0.2
+  },
+  {
+   "Safra": 2014,
+   "Evento": "Seca de 2014",
+   "Observado": 26.9,
+   "M(t)": 25.6,
+   "Observado - M(t)": 1.4,
+   "Efeito do clima": -0.3,
+   "Efeito do NDVI": 1.0,
+   "Variável climática de maior efeito negativo": "Precip_Florada_t1",
+   "Efeito dela": -0.5
+  },
+  {
+   "Safra": 2015,
+   "Evento": "Após a seca de 2014",
+   "Observado": 26.6,
+   "M(t)": 27.5,
+   "Observado - M(t)": -0.9,
+   "Efeito do clima": 0.2,
+   "Efeito do NDVI": 0.1,
+   "Variável climática de maior efeito negativo": "Tmin_Abs_Florada_t1",
+   "Efeito dela": -0.3
+  },
+  {
+   "Safra": 2021,
+   "Evento": "Geada de 2021",
+   "Observado": 21.0,
+   "M(t)": 29.9,
+   "Observado - M(t)": -8.9,
+   "Efeito do clima": -1.6,
+   "Efeito do NDVI": -1.0,
+   "Variável climática de maior efeito negativo": "Precip_Inverno_Risco_Geada_t1",
+   "Efeito dela": -2.5
+  },
+  {
+   "Safra": 2022,
+   "Evento": "Após a geada de 2021",
+   "Observado": 20.5,
+   "M(t)": 27.3,
+   "Observado - M(t)": -6.8,
+   "Efeito do clima": -2.1,
+   "Efeito do NDVI": -1.8,
+   "Variável climática de maior efeito negativo": "Precip_Inverno_Risco_Geada_t1",
+   "Efeito dela": -2.2
+  },
+  {
+   "Safra": 2023,
+   "Evento": "Segunda safra após a geada de 2021",
+   "Observado": 24.6,
+   "M(t)": 24.6,
+   "Observado - M(t)": 0.0,
+   "Efeito do clima": -0.2,
+   "Efeito do NDVI": -1.1,
+   "Variável climática de maior efeito negativo": "Precip_Florada_t1",
+   "Efeito dela": -0.3
+  }
+ ],
+ "efeito_medio_absoluto_do_clima_em_uma_safra": 1.4,
+ "faixa_do_efeito_do_clima": [
+  -4.68,
+  3.83
+ ],
+ "safras_com_inverno_mais_seco_SHAP": {
+  "2021": -2.45,
+  "2022": -2.17,
+  "2011": -2.08,
+  "1990": -0.45
+ },
+ "safra_2003_SHAP_tmin_florada": -3.78
+}

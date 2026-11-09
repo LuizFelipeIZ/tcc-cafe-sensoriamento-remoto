@@ -1,0 +1,23 @@
+{
+ "MAE_completo": 4.8,
+ "MAE_completo_mais_DEF": 4.71,
+ "MAE_controles": 4.54,
+ "MAE_controles_mais_DEF": 4.63,
+ "wilcoxon_completo_vs_completo_mais_DEF": [
+  0.1234,
+  0.2449,
+  19,
+  35
+ ],
+ "wilcoxon_controles_vs_controles_mais_DEF": [
+  0.8538,
+  0.942,
+  19,
+  35
+ ],
+ "MDI_das_variaveis_do_balanco_pct": {
+  "DEF_Florada": 6.5,
+  "DEF_Expansao_Graos": 0.1,
+  "Tmax_Expansao_Graos": 7.2
+ }
+}
