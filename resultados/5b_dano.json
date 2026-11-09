@@ -100,6 +100,92 @@
    "Efeito dela": -0.3
   }
  ],
+ "safras_seguintes_referencia_fixa": [
+  {
+   "Evento": "Geada de 2021",
+   "Safra": 2022,
+   "Safra afetada": "1ª",
+   "Referência (3 safras antes)": 27.3,
+   "Safras da referência": "2019-2021",
+   "Observado": 20.5,
+   "Queda": -6.8,
+   "Queda (%)": -25,
+   "Efeito do clima": -2.1,
+   "Efeito do NDVI": -1.8,
+   "Não explicado": -2.9,
+   "Municípios com queda": 10
+  },
+  {
+   "Evento": "Geada de 2021",
+   "Safra": 2023,
+   "Safra afetada": "2ª",
+   "Referência (3 safras antes)": 27.3,
+   "Safras da referência": "2019-2021",
+   "Observado": 24.6,
+   "Queda": -2.7,
+   "Queda (%)": -10,
+   "Efeito do clima": -0.2,
+   "Efeito do NDVI": -1.1,
+   "Não explicado": -1.4,
+   "Municípios com queda": 9
+  },
+  {
+   "Evento": "Geada de 1994",
+   "Safra": 1995,
+   "Safra afetada": "1ª",
+   "Referência (3 safras antes)": 20.3,
+   "Safras da referência": "1992-1994",
+   "Observado": 13.1,
+   "Queda": -7.2,
+   "Queda (%)": -36,
+   "Efeito do clima": -0.7,
+   "Efeito do NDVI": -1.3,
+   "Não explicado": -5.2,
+   "Municípios com queda": 10
+  },
+  {
+   "Evento": "Geada de 1994",
+   "Safra": 1996,
+   "Safra afetada": "2ª",
+   "Referência (3 safras antes)": 20.3,
+   "Safras da referência": "1992-1994",
+   "Observado": 19.9,
+   "Queda": -0.4,
+   "Queda (%)": -2,
+   "Efeito do clima": 1.2,
+   "Efeito do NDVI": -0.4,
+   "Não explicado": -1.1,
+   "Municípios com queda": 9
+  },
+  {
+   "Evento": "Seca de 2014",
+   "Safra": 2014,
+   "Safra afetada": "1ª",
+   "Referência (3 safras antes)": 25.6,
+   "Safras da referência": "2011-2013",
+   "Observado": 26.9,
+   "Queda": 1.4,
+   "Queda (%)": 5,
+   "Efeito do clima": -0.3,
+   "Efeito do NDVI": 1.0,
+   "Não explicado": 0.7,
+   "Municípios com queda": 2
+  },
+  {
+   "Evento": "Seca de 2014",
+   "Safra": 2015,
+   "Safra afetada": "2ª",
+   "Referência (3 safras antes)": 25.6,
+   "Safras da referência": "2011-2013",
+   "Observado": 26.6,
+   "Queda": 1.1,
+   "Queda (%)": 4,
+   "Efeito do clima": 0.2,
+   "Efeito do NDVI": 0.1,
+   "Não explicado": 0.8,
+   "Municípios com queda": 3
+  }
+ ],
  "efeito_medio_absoluto_do_clima_em_uma_safra": 1.4,
  "faixa_do_efeito_do_clima": [
   -4.68,
