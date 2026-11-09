@@ -110,7 +110,7 @@ tcc-cafe-sensoriamento-remoto/
 │
 ├── etapa5_avaliacao/              ETAPA 5: atribuição e diagnósticos
 │   ├── 5a_importancia_mdi_shap.py              Figuras 3 e 4
-│   ├── 5b_dano_por_evento.py                   Tabela 3
+│   ├── 5b_dano_por_evento.py                   Tabela 3 e 1ª/2ª safra afetada
 │   ├── 5c_erros_e_diagnosticos.py              erros por município, viés, mapa
 │   └── 5d_figuras_metodologia.py               Figuras 1 e 2, séries
 │
@@ -216,7 +216,7 @@ O modelo **nunca** usa o rendimento da safra que estima. A média móvel é calc
 ### Etapa 5: avaliação e atribuição
 
 * **5a.** Importância por **MDI** (redução de variância) e por **SHAP** (efeito de cada variável em sacas/ha, com direção), no modelo ajustado com as 350 observações; soma por fase e estabilidade nos 5 modelos do K-Fold.
-* **5b.** Dano em sacas/ha: soma dos valores SHAP das 6 variáveis climáticas (e das 4 de NDVI), na média dos 10 municípios, em cada safra de evento.
+* **5b.** Dano em sacas/ha: soma dos valores SHAP das 6 variáveis climáticas (e das 4 de NDVI), na média dos 10 municípios, em cada safra de evento. Na parte 2, acompanha a 1ª e a 2ª safra afetada por evento, com a referência fixa nas três safras antes do evento.
 * **5c.** Viés por faixa de rendimento, erro por município (com mapa) e a mudança de sinal da anomalia bienal com e sem 1991-2002.
 * **5d.** Figuras de apoio: fluxograma, área de estudo e séries.
 
@@ -279,6 +279,24 @@ Mais chuva na florada e NDVI na florada mais alto aumentam o rendimento estimado
 | 2023 | Segunda safra após a geada | 24,6 | 24,6 | 0,0 | −0,2 | −1,1 |
 
 Numa safra qualquer, o efeito médio do clima é de 1,4 sacas/ha. A queda observada inclui a bienalidade, por isso é maior que o dano atribuído.
+
+### Tabela 3b: 1ª e 2ª safra afetada, com referência fixa
+
+Na Tabela 3, a segunda safra após a geada de 2021 (2023) aparece com queda de 0,0 porque M(2023) é a média de 2020, 2021 e 2022 e já inclui as duas safras danificadas. Aqui a referência fica fixa nas três safras **antes do evento**, em cada município (`resultados/tabela3b_dano_safras_seguintes.csv`):
+
+| Evento | Safra | Afetada | Referência | Observado | Queda | Clima | NDVI | Não explicado | Municípios com queda |
+|---|---|---|---|---|---|---|---|---|---|
+| Geada de 2021 | 2022 | 1ª | 27,3 (2019-2021) | 20,5 | **−6,8** (−25%) | −2,1 | −1,8 | −2,9 | 10 |
+| Geada de 2021 | 2023 | 2ª | 27,3 (2019-2021) | 24,6 | **−2,7** (−10%) | −0,2 | **−1,1** | −1,4 | 9 |
+| Geada de 1994 | 1995 | 1ª | 20,3 (1992-1994) | 13,1 | **−7,2** (−36%) | −0,7 | −1,3 | −5,2 | 10 |
+| Geada de 1994 | 1996 | 2ª | 20,3 (1992-1994) | 19,9 | −0,4 (−2%) | +1,2 | −0,4 | −1,1 | 9 |
+| Seca de 2014 | 2014 | 1ª (enchimento) | 25,6 (2011-2013) | 26,9 | +1,4 | −0,3 | +1,0 | +0,7 | 2 |
+| Seca de 2014 | 2015 | 2ª (florada) | 25,6 (2011-2013) | 26,6 | +1,1 | +0,2 | +0,1 | +0,8 | 3 |
+
+* **Geada de 2021:** o dano continua na 2ª safra. Em 2023 o clima foi normal (−0,2) e quem ainda registra a geada é o NDVI (−1,1), que vê a lavoura se recompondo.
+* **Geada de 1994:** o dano ficou concentrado em 1995; em 1996 a produção já tinha voltado ao nível anterior.
+* **Seca de 2014:** o IBGE não registra queda nem na safra de 2014 (seca no enchimento dos grãos) nem na de 2015 (florada com 101 mm de déficit).
+* A geada de 2000 fica de fora: na safra de 2001, 9 dos 10 municípios repetem o rendimento de 2000.
 
 ### Erros por município
 
