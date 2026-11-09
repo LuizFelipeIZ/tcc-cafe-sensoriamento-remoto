@@ -1,0 +1,16 @@
+# Versões usadas para gerar os resultados do TCC (Python 3.13).
+# Versões próximas devem funcionar; para números idênticos, use estas.
+pandas==3.0.5
+numpy==2.5.3
+scipy==1.18.1
+scikit-learn==1.9.1
+shap==0.54.1
+matplotlib==3.11.2
+openpyxl==3.1.5
+
+# Só para os mapas (etapa 5c e Figura 2)
+geopandas==1.2.0
+
+# Só para a etapa 1 (coleta; precisa de internet)
+requests
+earthengine-api
