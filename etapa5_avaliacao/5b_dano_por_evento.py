@@ -19,11 +19,31 @@ Eventos
 geadas de 1994, 2000 e 2021 (a safra afetada é a do ano seguinte) e a seca
 de 2014 (com a safra de 2015).
 
+Parte 2: a 1ª e a 2ª safra afetada, com referência fixa
+-------------------------------------------------------
+Na Tabela 3, cada safra é comparada com a média das TRÊS SAFRAS ANTERIORES A
+ELA. Na segunda safra após um evento, essa média já inclui as safras
+danificadas, e a queda some: em 2023, M(t) é a média de 2020, 2021 e 2022, e
+a Tabela 3 mostra queda de 0,0.
+
+Por isso a parte 2 fixa a referência nas três safras ANTES DO EVENTO (a M(t)
+da primeira safra afetada, em cada município) e acompanha duas safras:
+    * geada de 2021 (julho, com a colheita quase terminada): 2022 e 2023,
+      referência nas safras de 2019 a 2021
+    * geada de 1994 (junho e julho): 1995 e 1996, referência em 1992-1994
+    * seca de 2014: 2014 (seca no enchimento dos grãos) e 2015 (florada de
+      set-nov de 2014, também seca), referência em 2011-2013
+A geada de 2000 fica de fora: na safra de 2001, 9 dos 10 municípios repetem
+o rendimento de 2000 (ver etapa 2a).
+"Não explicado" é a queda menos os efeitos do clima e do NDVI.
+
 Como rodar
 ----------
     python etapa5_avaliacao/5b_dano_por_evento.py   (~10 s)
 
-Saídas: resultados/tabela3_dano_por_evento.csv, resultados/5b_dano.json
+Saídas: resultados/tabela3_dano_por_evento.csv,
+        resultados/tabela3b_dano_safras_seguintes.csv (parte 2),
+        resultados/5b_dano.json
 """
 import sys
 from pathlib import Path
@@ -70,6 +90,37 @@ for safra, evento in EVENTOS:
 tabela = pd.DataFrame(linhas)
 tabela.to_csv(RESULTADOS / "tabela3_dano_por_evento.csv", index=False)
 
+# ---------------------------------------------------------------------------
+# Parte 2: 1ª e 2ª safra afetada, com a referência fixa antes do evento
+# ---------------------------------------------------------------------------
+SAFRAS_SEGUINTES = [
+    ("Geada de 2021", [2022, 2023]),
+    ("Geada de 1994", [1995, 1996]),
+    ("Seca de 2014", [2014, 2015]),
+]
+sv["Municipio"] = base.Municipio.values
+linhas_b = []
+for evento, safras in SAFRAS_SEGUINTES:
+    # referência de cada município: média das 3 safras antes do evento
+    ref = sv[sv[ANO] == safras[0]].set_index("Municipio").M
+    for ordem, safra in enumerate(safras, start=1):
+        s = sv[sv[ANO] == safra].set_index("Municipio")
+        queda = s.observado - ref
+        linhas_b.append({
+            "Evento": evento, "Safra": safra, "Safra afetada": f"{ordem}ª",
+            "Referência (3 safras antes)": round(ref.mean(), 1),
+            "Safras da referência": f"{safras[0] - 3}-{safras[0] - 1}",
+            "Observado": round(s.observado.mean(), 1),
+            "Queda": round(queda.mean(), 1),
+            "Queda (%)": round(100 * queda.mean() / ref.mean()),
+            "Efeito do clima": round(s.clima.mean(), 1),
+            "Efeito do NDVI": round(s.ndvi.mean(), 1),
+            "Não explicado": round(queda.mean() - s.clima.mean() - s.ndvi.mean(), 1),
+            "Municípios com queda": int((queda < 0).sum()),
+        })
+tabela_b = pd.DataFrame(linhas_b)
+tabela_b.to_csv(RESULTADOS / "tabela3b_dano_safras_seguintes.csv", index=False)
+
 clima_por_safra = por_safra.clima.mean()
 resumo = {
     "efeito_medio_absoluto_do_clima_em_uma_safra": round(float(clima_por_safra.abs().mean()), 2),
@@ -77,8 +128,10 @@ resumo = {
     "safras_com_inverno_mais_seco_SHAP": por_safra.Precip_Inverno_Risco_Geada_t1.mean().nsmallest(4).round(2).to_dict(),
     "safra_2003_SHAP_tmin_florada": round(float(por_safra.get_group(2003).Tmin_Abs_Florada_t1.mean()), 2),
 }
-salvar_json({"tabela": linhas, **resumo}, "5b_dano.json")
+salvar_json({"tabela": linhas, "safras_seguintes_referencia_fixa": linhas_b, **resumo}, "5b_dano.json")
 
 print(tabela.drop(columns=["Variável climática de maior efeito negativo"]).to_string(index=False))
 print("\nEfeito médio do clima numa safra qualquer (|sacas/ha|):", resumo["efeito_medio_absoluto_do_clima_em_uma_safra"])
 print("Safras em que o inverno seco mais reduziu a estimativa:", resumo["safras_com_inverno_mais_seco_SHAP"])
+print("\nParte 2: 1ª e 2ª safra afetada, frente às 3 safras antes do evento (sacas/ha):")
+print(tabela_b.drop(columns=["Safras da referência"]).to_string(index=False))
