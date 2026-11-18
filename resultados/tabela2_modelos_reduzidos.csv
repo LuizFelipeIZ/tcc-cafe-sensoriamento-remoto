@@ -1,9 +1,9 @@
 conjunto,modelo,MAE,p_obs [Holm],p_safra [Holm]
-serie_completa,completo,4.8,,
-serie_completa,sem_ndvi,4.9,0.0181 [0.1086],0.1788 [0.5364]
-serie_completa,sem_clima,4.76,0.5803 [1.0],0.8272 [1.0]
-serie_completa,controles,4.54,0.0517 [0.2585],0.0674 [0.2696]
-sem_1991_2002,completo,4.14,,
-sem_1991_2002,sem_ndvi,4.17,0.4351 [1.0],0.6434 [1.0]
-sem_1991_2002,sem_clima,4.34,0.1908 [0.954],0.0858 [0.5148]
-sem_1991_2002,controles,4.18,0.5858 [1.0],0.754 [1.0]
+serie_completa,completo,4.69,,
+serie_completa,sem_ndvi,4.71,0.3142 [1.0],1.0 [1.0]
+serie_completa,sem_clima,4.76,0.706 [1.0],0.8146 [1.0]
+serie_completa,controles,4.54,0.4413 [1.0],0.2947 [1.0]
+sem_1991_2002,completo,4.19,,
+sem_1991_2002,sem_ndvi,4.24,0.0867 [0.5202],0.2467 [0.9868]
+sem_1991_2002,sem_clima,4.34,0.594 [1.0],0.1601 [0.8005]
+sem_1991_2002,controles,4.18,0.8095 [1.0],0.709 [1.0]

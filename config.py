@@ -59,8 +59,8 @@ CONTROLES = [
 CLIMA = [
     "Precip_Florada_t1",                 # chuva set-nov do ano t-1
     "Tmin_Abs_Florada_t1",               # mínima absoluta set-nov do ano t-1
-    "Precip_Enchimento_Graos",           # chuva jan-abr e dez do ano t
-    "Tmin_Abs_Enchimento_Graos",         # mínima absoluta jan-abr e dez do ano t
+    "Precip_Enchimento_Graos",           # chuva de dez de t-1 a abr de t (etapa 1b2)
+    "Tmin_Abs_Enchimento_Graos",         # mínima absoluta de dez de t-1 a abr de t
     "Precip_Inverno_Risco_Geada_t1",     # chuva jun-ago do ano t-1
     "Tmin_Abs_Inverno_Risco_Geada_t1",   # mínima absoluta jun-ago do ano t-1
 ]

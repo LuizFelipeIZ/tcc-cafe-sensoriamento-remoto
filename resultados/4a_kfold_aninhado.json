@@ -7,16 +7,16 @@
    "R2": 0.054
   },
   "completo": {
-   "MAE": 4.8,
-   "RMSE": 6.48,
-   "R2": 0.396,
-   "dp_MAE_entre_partes": 0.38
+   "MAE": 4.69,
+   "RMSE": 6.38,
+   "R2": 0.415,
+   "dp_MAE_entre_partes": 0.45
   },
   "sem_ndvi": {
-   "MAE": 4.9,
-   "RMSE": 6.65,
-   "R2": 0.364,
-   "dp_MAE_entre_partes": 0.45
+   "MAE": 4.71,
+   "RMSE": 6.44,
+   "R2": 0.405,
+   "dp_MAE_entre_partes": 0.51
   },
   "sem_clima": {
    "MAE": 4.76,
@@ -32,35 +32,46 @@
   },
   "wilcoxon_RF_vs_M": [
    0.0,
-   0.0475,
-   21,
+   0.0144,
+   23,
+   35
+  ],
+  "completo_safra_fora": {
+   "MAE": 6.05,
+   "RMSE": 7.86,
+   "R2": 0.113
+  },
+  "wilcoxon_safra_fora_vs_M": [
+   0.3059,
+   0.728,
+   17,
    35
   ],
   "wilcoxon_sem_ndvi_vs_completo": [
-   0.0181,
-   0.1788,
-   22,
+   0.3142,
+   1.0,
+   17,
    35
   ],
   "wilcoxon_sem_clima_vs_completo": [
-   0.5803,
-   0.8272,
-   16,
+   0.706,
+   0.8146,
+   18,
    35
   ],
   "wilcoxon_controles_vs_completo": [
-   0.0517,
-   0.0674,
-   13,
+   0.4413,
+   0.2947,
+   15,
    35
   ],
   "holm_obs_safra": [
-   0.1086,
-   0.5364,
    1.0,
    1.0,
-   0.2585,
-   0.2696
+   1.0,
+   1.0,
+   1.0,
+   1.0
   ],
   "baseline_Y_t2": {
    "N": 340,
@@ -75,14 +86,14 @@
     "R2": 0.049
    },
    "RF": {
-    "MAE": 4.88,
-    "RMSE": 6.56,
-    "R2": 0.394
+    "MAE": 4.77,
+    "RMSE": 6.46,
+    "R2": 0.412
    },
    "wilcoxon_RF_vs_Y_t2": [
-    0.0001,
-    0.0261,
-    23,
+    0.0,
+    0.0206,
+    24,
     34
    ]
   }
@@ -95,15 +106,15 @@
    "R2": 0.104
   },
   "completo": {
-   "MAE": 4.14,
-   "RMSE": 5.36,
-   "R2": 0.576,
-   "dp_MAE_entre_partes": 0.37
+   "MAE": 4.19,
+   "RMSE": 5.4,
+   "R2": 0.569,
+   "dp_MAE_entre_partes": 0.4
   },
   "sem_ndvi": {
-   "MAE": 4.17,
-   "RMSE": 5.36,
-   "R2": 0.575,
+   "MAE": 4.24,
+   "RMSE": 5.48,
+   "R2": 0.556,
    "dp_MAE_entre_partes": 0.34
   },
   "sem_clima": {
@@ -120,33 +131,44 @@
   },
   "wilcoxon_RF_vs_M": [
    0.0,
-   0.0277,
+   0.0301,
    15,
    23
   ],
+  "completo_safra_fora": {
+   "MAE": 6.08,
+   "RMSE": 7.47,
+   "R2": 0.175
+  },
+  "wilcoxon_safra_fora_vs_M": [
+   0.9807,
+   0.709,
+   14,
+   23
+  ],
   "wilcoxon_sem_ndvi_vs_completo": [
-   0.4351,
-   0.6434,
-   13,
+   0.0867,
+   0.2467,
+   14,
    23
   ],
   "wilcoxon_sem_clima_vs_completo": [
-   0.1908,
-   0.0858,
-   17,
+   0.594,
+   0.1601,
+   15,
    23
   ],
   "wilcoxon_controles_vs_completo": [
-   0.5858,
-   0.754,
-   13,
+   0.8095,
+   0.709,
+   12,
    23
   ],
   "holm_obs_safra": [
+   0.5202,
+   0.9868,
    1.0,
-   1.0,
-   0.954,
-   0.5148,
+   0.8005,
    1.0,
    1.0
   ],
@@ -163,13 +185,13 @@
     "R2": 0.093
    },
    "RF": {
-    "MAE": 4.2,
-    "RMSE": 5.43,
-    "R2": 0.576
+    "MAE": 4.25,
+    "RMSE": 5.47,
+    "R2": 0.57
    },
    "wilcoxon_RF_vs_Y_t2": [
-    0.0002,
-    0.0229,
+    0.0003,
+    0.0359,
     15,
     22
    ]

@@ -20,7 +20,9 @@ O que faz
    além dos dias com mínima abaixo de 3 °C no inverno.
 
 As janelas são do ANO CIVIL. A defasagem para o ano agrícola (florada e
-inverno do ano t-1 explicando a safra t) é feita depois, na etapa 3.
+inverno do ano t-1 explicando a safra t) é feita depois, na etapa 3. O
+enchimento do ano civil foi substituído pela janela de dezembro de t-1 a
+abril de t, calculada na etapa 1b2.
 
 Como rodar
 ----------
@@ -51,24 +53,34 @@ except Exception:
 # ---------------------------------------------------------------------------
 # O GAUL é filtrado por um ponto dentro de cada município, e não pelo nome,
 # para não depender de acentos e grafias.
-SEDES = {   # (longitude, latitude) aproximadas da sede
-    "Arceburgo": (-46.9611, -21.3781), "Cabo Verde": (-46.3961, -21.4586),
-    "Guaranesia": (-46.9922, -21.3892), "Guaxupe": (-46.7136, -21.3053),
-    "Itamogi": (-46.7758, -21.2914), "Jacui": (-46.6353, -21.0175),
-    "Juruaia": (-46.8983, -21.3494), "Monte Belo": (-46.3689, -21.2861),
-    "Muzambinho": (-46.5236, -21.3739), "Nova Resende": (-46.4319, -21.1808),
+# Um ponto bem dentro de cada município (polo de inacessibilidade do polígono da Malha
+# Municipal do IBGE, a 5-9 km da divisa), usado para achar o polígono no GAUL. As
+# coordenadas antigas, "da sede", caíam em municípios vizinhos em quatro casos
+# (Guaranésia, Itamogi, Juruaia e Nova Resende); por isso o nome do polígono achado
+# agora é conferido (ver geometria_municipio).
+PONTOS_INTERNOS = {   # (longitude, latitude)
+    "Arceburgo": (-46.9460, -21.3723), "Cabo Verde": (-46.3969, -21.4668),
+    "Guaranesia": (-46.8068, -21.2706), "Guaxupe": (-46.6752, -21.3024),
+    "Itamogi": (-47.0405, -21.0673), "Jacui": (-46.7261, -21.0363),
+    "Juruaia": (-46.5268, -21.2033), "Monte Belo": (-46.3269, -21.3044),
+    "Muzambinho": (-46.5216, -21.3678), "Nova Resende": (-46.4012, -21.1101),
 }
 gaul = ee.FeatureCollection("FAO/GAUL/2015/level2").filter(ee.Filter.eq("ADM1_NAME", "Minas Gerais"))
 
 
+def _sem_acento(s):
+    return unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower()
+
+
 def geometria_municipio(nome):
-    lon, lat = SEDES[nome]
-    ponto = ee.Geometry.Point([lon, lat])
-    feat = gaul.filterBounds(ponto).first()
-    if ee.Feature(feat).geometry().getInfo() is not None:
-        return ee.Feature(feat).geometry()
-    print(f"[AVISO] {nome}: GAUL sem polígono; usando raio de 5 km na sede")
-    return ponto.buffer(5000)
+    """Polígono do GAUL que contém o ponto interno do município, com o nome conferido."""
+    lon, lat = PONTOS_INTERNOS[nome]
+    feat = ee.Feature(gaul.filterBounds(ee.Geometry.Point([lon, lat])).first())
+    achado = feat.get("ADM2_NAME").getInfo()
+    if _sem_acento(achado) != _sem_acento(nome):
+        raise SystemExit(f"[ERRO] o ponto de {nome} caiu em {achado} no GAUL; corrija PONTOS_INTERNOS")
+    print(f"{nome}: polígono GAUL '{achado}'")
+    return feat.geometry()
 
 
 # ---------------------------------------------------------------------------
@@ -156,7 +168,7 @@ def resumir_janelas(diario):
 
 if __name__ == "__main__":
     diarios = []
-    for nome in SEDES:
+    for nome in PONTOS_INTERNOS:
         geom = pegada_cafe(nome, geometria_municipio(nome))
         diarios.append(clima_diario(nome, geom))
     tabela = resumir_janelas(pd.concat(diarios, ignore_index=True))

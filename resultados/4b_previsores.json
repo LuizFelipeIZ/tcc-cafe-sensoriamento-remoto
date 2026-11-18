@@ -1,30 +1,30 @@
 {
  "seca": {
   "N": 40,
-  "MAE_rf": 3.99,
+  "MAE_rf": 4.16,
   "MAE_so_controles": 4.27,
   "MAE_baseline_M": 4.21,
-  "p_wilcoxon_rf_vs_baseline": 0.91,
-  "erro_percentual_rf": 13.8,
-  "cobertura_p10_p90_pct": 67.5,
+  "p_wilcoxon_rf_vs_baseline": 0.995,
+  "erro_percentual_rf": 14.4,
+  "cobertura_p10_p90_pct": 75.0,
   "MAE_por_safra": {
    "2014": {
-    "erro_rf": 2.67,
+    "erro_rf": 3.27,
     "erro_so_controles": 3.5,
     "erro_baseline_M": 3.91
    },
    "2015": {
-    "erro_rf": 3.38,
+    "erro_rf": 3.25,
     "erro_so_controles": 3.11,
     "erro_baseline_M": 1.25
    },
    "2016": {
-    "erro_rf": 5.98,
+    "erro_rf": 6.06,
     "erro_so_controles": 6.21,
     "erro_baseline_M": 6.45
    },
    "2017": {
-    "erro_rf": 3.93,
+    "erro_rf": 4.04,
     "erro_so_controles": 4.27,
     "erro_baseline_M": 5.22
    }

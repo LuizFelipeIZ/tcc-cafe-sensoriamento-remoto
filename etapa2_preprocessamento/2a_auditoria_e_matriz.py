@@ -35,6 +35,20 @@ clima = pd.read_csv(DADOS_BRUTOS / "clima_era5land_janelas_1988_2023.csv")
 for tab in (prod, clima):
     tab[MUN] = tab[MUN].str.strip()
 
+# Janela de enchimento corrigida (etapa 1b2): dezembro de t-1 a abril de t, e não
+# janeiro a abril + dezembro do mesmo ano civil (o dezembro de t é da safra t+1).
+ENCHIMENTO = DADOS_BRUTOS / "clima_enchimento_dez_abr_1988_2023.csv"
+if ENCHIMENTO.exists():
+    novo = pd.read_csv(ENCHIMENTO)
+    novo[MUN] = novo[MUN].str.strip()
+    colunas = ["Precip_Enchimento_Graos", "Tmin_Abs_Enchimento_Graos"]
+    clima = clima.drop(columns=colunas).merge(novo[[MUN, ANO] + colunas], on=[MUN, ANO], how="left",
+                                              validate="one_to_one")
+    assert clima[colunas].notna().all().all(), "janela de enchimento incompleta"
+    print("Enchimento: dezembro de t-1 a abril de t (etapa 1b2)")
+else:
+    print("[AVISO] sem a etapa 1b2: enchimento ainda no ano civil (jan-abr e dez de t)")
+
 relatorio = {}
 
 # 1. Cobertura, duplicidade e grafia ------------------------------------------

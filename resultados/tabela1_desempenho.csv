@@ -1,7 +1,9 @@
 conjunto,modelo,MAE,RMSE,R2,dp_MAE,Wilcoxon_vs_M
 serie_completa,Persistência histórica M(t),6.26,8.11,0.054,,
 serie_completa,Rendimento de dois anos antes Y(t-2),6.24,8.66,-0.055,,
-serie_completa,Random Forest (clima + NDVI),4.8,6.48,0.396,0.38,"p obs=0.0, p safra=0.0475"
+serie_completa,Random Forest (clima + NDVI),4.69,6.38,0.415,0.45,"p obs=0.0, p safra=0.0144"
+serie_completa,"Random Forest, safra inteira fora",6.05,7.86,0.113,,"p obs=0.3059, p safra=0.728"
 sem_1991_2002,Persistência histórica M(t),6.2,7.79,0.104,,
 sem_1991_2002,Rendimento de dois anos antes Y(t-2),5.73,7.52,0.189,,
-sem_1991_2002,Random Forest (clima + NDVI),4.14,5.36,0.576,0.37,"p obs=0.0, p safra=0.0277"
+sem_1991_2002,Random Forest (clima + NDVI),4.19,5.4,0.569,0.4,"p obs=0.0, p safra=0.0301"
+sem_1991_2002,"Random Forest, safra inteira fora",6.08,7.47,0.175,,"p obs=0.9807, p safra=0.709"

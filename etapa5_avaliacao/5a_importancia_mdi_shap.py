@@ -51,7 +51,8 @@ from config import (ALVO, CLIMA, CONTROLES, FASES, FIGURAS, KG_POR_SACA, NDVI, N
                     busca_em_grade, carregar_base, kfold_externo, salvar_json)
 
 ESCURO, CLARO, AZUL = "#0B3D2A", "#13CBA0", "#2E86AB"
-plt.rcParams.update({"font.family": "serif", "font.size": 9})
+plt.rcParams.update({"font.family": "serif", "font.serif": ["Times New Roman", "Liberation Serif", "DejaVu Serif"],
+                     "font.size": 8.5})
 
 base = carregar_base()
 X, y = base[VARIAVEIS], base[ALVO]
@@ -98,7 +99,8 @@ saida = {
 salvar_json(saida, "5a_importancia.json")
 
 # Figura 3: (a) MDI por variável, (b) MDI e SHAP por fase e grupo ----------------
-fig, (a, b) = plt.subplots(1, 2, figsize=(8.2, 4.8), gridspec_kw={"width_ratios": [1.25, 1]})
+# tamanho pensado para 14 cm de largura na página A4 (letras de ~7 pt impressas)
+fig, (a, b) = plt.subplots(1, 2, figsize=(6.4, 4.0), gridspec_kw={"width_ratios": [1.3, 1]})
 ordem = mdi.sort_values()
 cores = [ESCURO if v in CONTROLES else (AZUL if v in NDVI else CLARO) for v in ordem.index]
 a.barh([NOMES[v] for v in ordem.index], ordem.values, height=0.7, color=cores)
@@ -109,6 +111,7 @@ a.legend(handles=[Patch(color=ESCURO, label="Controles"), Patch(color=CLARO, lab
                   Patch(color=AZUL, label="NDVI")], frameon=False, fontsize=7.5, loc="lower right")
 
 rotulos = ["Controles", "Florada (t-1)", "NDVI", "Inverno (t-1)", "Enchimento"][::-1]
+ROT = {r: r.replace("t-1", "t−1") for r in rotulos}
 pos, h = np.arange(len(rotulos)), 0.36
 v_mdi = [por_grupo[g]["MDI"] for g in rotulos]
 v_shap = [por_grupo[g]["SHAP"] for g in rotulos]
@@ -116,10 +119,10 @@ b.barh(pos + h / 2, v_mdi, height=h, color=ESCURO, label="MDI")
 b.barh(pos - h / 2, v_shap, height=h, color="white", edgecolor=ESCURO, hatch="////", lw=0.8, label="SHAP")
 for yy, v in list(zip(pos + h / 2, v_mdi)) + list(zip(pos - h / 2, v_shap)):
     b.text(v + 0.8, yy, f"{v:.1f}".replace(".", ","), va="center", fontsize=7.5)
-b.set_yticks(pos, rotulos)
+b.set_yticks(pos, [ROT[r] for r in rotulos])
 b.set_xlim(0, 62)
 b.set_xlabel("Participação (%)")
-b.set_title("(b) Por fase fenológica e grupo", fontsize=9.5, fontweight="bold", loc="left")
+b.set_title("(b) Por fase e grupo", fontsize=9.5, fontweight="bold", loc="left")
 b.spines[["top", "right"]].set_visible(False)
 b.legend(frameon=False, fontsize=7.5, loc="lower right")
 plt.tight_layout()
@@ -131,8 +134,10 @@ shap.plots._labels.labels["FEATURE_VALUE_LOW"] = "Baixo"    # legenda em portugu
 shap.plots._labels.labels["FEATURE_VALUE_HIGH"] = "Alto"
 plt.figure()
 shap.summary_plot(valores_shap / KG_POR_SACA, X.rename(columns=NOMES), show=False,
-                  plot_size=(7, 4.8), color_bar_label="Valor da variável")
-plt.xlabel("Efeito sobre o rendimento estimado (sacas/ha)")
+                  plot_size=(7.5, 3.9), color_bar_label="Valor da variável")
+plt.xlabel("Efeito sobre a produtividade estimada (sacas/ha)")
+plt.gca().xaxis.set_major_formatter(  # vírgula decimal e sinal de menos tipográfico
+    matplotlib.ticker.FuncFormatter(lambda v, _: f"{v:g}".replace(".", ",").replace("-", "−")))
 plt.tight_layout()
 plt.savefig(FIGURAS / "figura4_shap.png", dpi=300)
 plt.close()

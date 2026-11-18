@@ -28,7 +28,7 @@ Reanálise ERA5-Land (ECMWF/ERA5_LAND/DAILY_AGGR), média diária sobre a área 
 | `Precip_Anual` | chuva acumulada no ano | mm |
 | `Dias_Abaixo_3C` | dias com mínima abaixo de 3 °C em junho a agosto | dias |
 | `Precip_Florada`, `Tmin_Abs_Florada` | chuva e mínima absoluta de setembro a novembro | mm, °C |
-| `Precip_Enchimento_Graos`, `Tmin_Abs_Enchimento_Graos` | chuva e mínima absoluta de janeiro a abril e dezembro | mm, °C |
+| `Precip_Enchimento_Graos`, `Tmin_Abs_Enchimento_Graos` | chuva e mínima absoluta de janeiro a abril e dezembro do ano civil (substituídas na etapa 2a pelas do arquivo abaixo) | mm, °C |
 | `Precip_Inverno_Risco_Geada`, `Tmin_Abs_Inverno_Risco_Geada` | chuva e mínima absoluta de junho a agosto | mm, °C |
 
 ### `ndvi_landsat_por_sensor_1989_2023.csv`
@@ -43,6 +43,16 @@ NDVI das lavouras de café (MapBiomas Coleção 9, classe 46, do ano da safra), 
 | `NDVI_Amplitude` | vigor − estresse |
 | `N_obs_medio_pixel` | observações limpas por pixel no ano agrícola (média) |
 | `N_imagens` | cenas do sensor no ano agrícola |
+
+### `clima_enchimento_dez_abr_1988_2023.csv`
+Mesma reanálise e mesma área de café, mas só a janela de enchimento do ano agrícola: de 1º de dezembro de t−1 a 30 de abril de t (151 ou 152 dias). Gerado por `etapa1_coleta/1b2_enchimento_dez_abr_gee.py`; a etapa 2a usa estas colunas no lugar das de enchimento do arquivo acima.
+
+| Coluna | Descrição | Unidade |
+|---|---|---|
+| `Municipio`, `Ano` | município e safra t | |
+| `Precip_Enchimento_Graos` | chuva acumulada de dez de t−1 a abr de t | mm |
+| `Tmin_Abs_Enchimento_Graos` | mínima absoluta de dez de t−1 a abr de t | °C |
+| `Dias` | dias com dado na janela | dias |
 
 ### `balanco_hidrico_openmeteo_1988_2023.csv`
 Balanço hídrico de Thornthwaite e Mather (1955), CAD de 100 mm, com temperatura e chuva diárias da Historical Weather API do Open-Meteo (ERA5 e ERA5-Land; IFS do ECMWF a partir de 2017) num ponto na sede de cada município. Gerado por `etapa1_coleta/1d_balanco_hidrico_openmeteo.py`. Usado só no previsor de seca.

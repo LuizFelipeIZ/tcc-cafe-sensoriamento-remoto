@@ -28,7 +28,9 @@ Comparações
   * teste de Wilcoxon pareado nos erros absolutos, por observação e por safra
     (média dos 10 municípios, porque eles compartilham o clima), com ajuste
     de Holm nas comparações dos modelos reduzidos;
-  * tudo repetido sem as safras de 1991 a 2002 (valores repetidos do IBGE).
+  * tudo repetido sem as safras de 1991 a 2002 (valores repetidos do IBGE);
+  * o modelo completo validado também com UMA SAFRA INTEIRA fora do treino
+    (LeaveOneGroupOut por safra), sem vizinhos da mesma safra.
 
 Como rodar
 ----------
@@ -42,10 +44,25 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+from sklearn.model_selection import LeaveOneGroupOut
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from config import (ALVO, ANO, CLIMA, CONTROLES, MUN, NDVI, RESULTADOS, SAFRAS_REPETIDAS,  # noqa: E402
-                    carregar_base, holm, metricas, salvar_json, validacao_aninhada, wilcoxon_obs_e_safra)
+                    busca_em_grade, carregar_base, holm, metricas, salvar_json, validacao_aninhada,
+                    wilcoxon_obs_e_safra)
+
+
+def validacao_safra_fora(dados, variaveis):
+    """Ciclo externo com UMA SAFRA INTEIRA fora do treino (os 10 municípios dela).
+
+    É o teste mais duro do K-Fold: o modelo não vê nenhum vizinho da safra que
+    estima. A busca em grade (ciclo interno) roda só com as outras safras.
+    """
+    X, y = dados[variaveis], dados[ALVO]
+    pred = np.zeros(len(y))
+    for treino, teste in LeaveOneGroupOut().split(X, y, dados[ANO]):
+        pred[teste] = busca_em_grade().fit(X.iloc[treino], y.iloc[treino]).predict(X.iloc[teste])
+    return pred
 
 MODELOS = {
     "completo": CONTROLES + CLIMA + NDVI,
@@ -74,6 +91,11 @@ for nome_conj, d in conjuntos.items():
     erro_rf = np.abs(y - pred["completo"])
     # RF x persistência histórica
     r["wilcoxon_RF_vs_M"] = wilcoxon_obs_e_safra(np.abs(y - d.media_movel_3anos), erro_rf, d[ANO])
+    # Safra inteira fora do treino (sugestão do orientador): sem vizinhos da mesma safra
+    p_sf = validacao_safra_fora(d, MODELOS["completo"])
+    r["completo_safra_fora"] = metricas(y, p_sf)
+    r["wilcoxon_safra_fora_vs_M"] = wilcoxon_obs_e_safra(np.abs(y - d.media_movel_3anos), np.abs(y - p_sf), d[ANO])
+    print(f"[{nome_conj}] safra fora MAE {r['completo_safra_fora']['MAE']:.2f} sacas/ha")
     # Modelos reduzidos x completo (Tabela 2), com Holm sobre os 6 p-valores
     brutos = []
     for nome in ["sem_ndvi", "sem_clima", "controles"]:
@@ -113,6 +135,9 @@ for nome_conj, r in saida.items():
     c = r["completo"]
     t1.append([nome_conj, "Random Forest (clima + NDVI)", c["MAE"], c["RMSE"], c["R2"],
                c["dp_MAE_entre_partes"], f"p obs={r['wilcoxon_RF_vs_M'][0]}, p safra={r['wilcoxon_RF_vs_M'][1]}"])
+    sf = r["completo_safra_fora"]
+    t1.append([nome_conj, "Random Forest, safra inteira fora", sf["MAE"], sf["RMSE"], sf["R2"], "",
+               f"p obs={r['wilcoxon_safra_fora_vs_M'][0]}, p safra={r['wilcoxon_safra_fora_vs_M'][1]}"])
 pd.DataFrame(t1, columns=["conjunto", "modelo", "MAE", "RMSE", "R2", "dp_MAE", "Wilcoxon_vs_M"]).to_csv(
     RESULTADOS / "tabela1_desempenho.csv", index=False)
 

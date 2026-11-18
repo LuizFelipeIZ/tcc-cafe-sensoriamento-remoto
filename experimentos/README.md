@@ -6,10 +6,10 @@ Esta pasta guarda os testes que ajudaram a chegar ao desenho final do TCC. Eles 
 
 | Script | Pergunta | O que mostrou (MAE em sacas/ha) |
 |---|---|---|
-| `e1_validacao_espacial_e_temporal.py` | O modelo funciona num município que não viu? E num bloco de safras futuras? | Com 2 municípios inteiros fora do treino, 4,52 (perto do K-Fold, 4,80). No bloco 2014-2023, 4,36 contra 4,85 da baseline, mas com R² ≈ 0: acerta o nível do período, não a variação entre safras. |
-| `e2_kfold_por_safra.py` | O que o K-Fold sorteado mede de verdade? | Só a tendência já erra 4,33, e a média dos vizinhos da mesma safra erra 4,34. Com a safra inteira fora do treino, o RF erra 6,68, mais que a baseline (6,26). Ou seja, o K-Fold mede a capacidade de **completar a série**, não de prever o futuro. |
-| `e3_residualizacao.py` | Tirando tendência e bienalidade por regressão, o clima explica o que sobra? | Clima e NDVI explicam cerca de 26% do resíduo (38% sem 1991-2002), com a florada no topo. Mas a combinação linear + RF erra mais (5,05) que o RF só com controles (4,54). |
-| `e4_deficit_hidrico_no_modelo.py` | Vale incluir o balanço hídrico no modelo principal? | 4,80 → 4,71, sem significância (p = 0,12 e 0,24). Ficou só no previsor de seca. |
+| `e1_validacao_espacial_e_temporal.py` | O modelo funciona num município que não viu? E num bloco de safras futuras? | Com 2 municípios inteiros fora do treino, 4,44 (perto do K-Fold, 4,69). No bloco 2014-2023, 4,28 contra 4,85 da persistência, mas com R² ≈ 0: acerta o nível do período, não a variação entre safras. |
+| `e2_kfold_por_safra.py` | O que o K-Fold sorteado mede de verdade? | Só a tendência já erra 4,33, e a média dos vizinhos da mesma safra erra 4,34. Com a safra inteira fora do treino e hiperparâmetros fixos, o RF erra 6,52, mais que a persistência (6,26); com a busca em grade da Tabela 1, 6,05, sem diferença significativa dela. Ou seja, o K-Fold mede a capacidade de **completar a série**, não de prever o futuro. |
+| `e3_residualizacao.py` | Tirando tendência e bienalidade por regressão, o clima explica o que sobra? | Clima e NDVI explicam cerca de 31% do resíduo (38% sem 1991-2002), com a florada no topo. Mas a combinação linear + RF erra mais (4,87) que o RF só com controles (4,54). |
+| `e4_deficit_hidrico_no_modelo.py` | Vale incluir o balanço hídrico no modelo principal? | No modelo completo, 4,69 → 4,55 (p = 0,012 por safra), mas sem superar o modelo só com controles (4,54); nos controles, o déficit piora o erro (4,73). Ficou só no previsor de seca. |
 
 Os resultados ficam em `resultados/e*.json`.
 

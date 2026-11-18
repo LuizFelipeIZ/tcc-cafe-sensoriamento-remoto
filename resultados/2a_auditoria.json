@@ -65,10 +65,10 @@
    "Dias_Abaixo_3C",
    "Precip_Florada",
    "Tmin_Abs_Florada",
-   "Precip_Enchimento_Graos",
-   "Tmin_Abs_Enchimento_Graos",
    "Precip_Inverno_Risco_Geada",
-   "Tmin_Abs_Inverno_Risco_Geada"
+   "Tmin_Abs_Inverno_Risco_Geada",
+   "Precip_Enchimento_Graos",
+   "Tmin_Abs_Enchimento_Graos"
   ],
   "celulas_vazias": 0
  }

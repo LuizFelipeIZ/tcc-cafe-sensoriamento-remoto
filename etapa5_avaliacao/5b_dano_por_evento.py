@@ -53,7 +53,7 @@ import shap
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from config import (ALVO, ANO, CLIMA, KG_POR_SACA, NDVI, RESULTADOS, VARIAVEIS,  # noqa: E402
-                    busca_em_grade, carregar_base, salvar_json)
+                    busca_em_grade, carregar_base, kfold_externo, salvar_json)
 
 EVENTOS = [
     (1994, "Geada de 1994"), (1995, "Após a geada de 1994"),
@@ -69,6 +69,15 @@ sv = pd.DataFrame(shap.TreeExplainer(modelo).shap_values(base[VARIAVEIS]) / KG_P
 sv[ANO] = base[ANO]
 sv["clima"] = sv[CLIMA].sum(axis=1)
 sv["ndvi"] = sv[NDVI].sum(axis=1)
+
+# SHAP fora da partição (sugestão do orientador): cada observação é explicada pelo
+# modelo do K-Fold que NÃO a viu no treino, inclusive as safras dos eventos.
+oof = pd.DataFrame(0.0, index=base.index, columns=VARIAVEIS)
+for treino, teste in kfold_externo().split(base):
+    m = busca_em_grade().fit(base.iloc[treino][VARIAVEIS], base.iloc[treino][ALVO]).best_estimator_
+    oof.iloc[teste] = shap.TreeExplainer(m).shap_values(base.iloc[teste][VARIAVEIS]) / KG_POR_SACA
+sv["clima_oof"] = oof[CLIMA].sum(axis=1).values
+sv["ndvi_oof"] = oof[NDVI].sum(axis=1).values
 sv["observado"] = base[ALVO] / KG_POR_SACA
 sv["M"] = base.media_movel_3anos / KG_POR_SACA
 por_safra = sv.groupby(ANO)
@@ -115,6 +124,8 @@ for evento, safras in SAFRAS_SEGUINTES:
             "Queda (%)": round(100 * queda.mean() / ref.mean()),
             "Efeito do clima": round(s.clima.mean(), 1),
             "Efeito do NDVI": round(s.ndvi.mean(), 1),
+            "Clima (fora da partição)": round(s.clima_oof.mean(), 1),
+            "NDVI (fora da partição)": round(s.ndvi_oof.mean(), 1),
             "Não explicado": round(queda.mean() - s.clima.mean() - s.ndvi.mean(), 1),
             "Municípios com queda": int((queda < 0).sum()),
         })

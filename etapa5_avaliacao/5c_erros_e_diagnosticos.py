@@ -113,24 +113,31 @@ try:
     m.index = m.index.map(sem_acento)
     G = g[g.chave.isin(m.index)].join(m, on="chave")
     F = g[~g.chave.isin(m.index)]
-    fig, axs = plt.subplots(1, 2, figsize=(8.6, 4.4))
+    from matplotlib.ticker import FuncFormatter
+    virgula = FuncFormatter(lambda v, _: f"{v:g}".replace(".", ",").replace("-", "\u2212"))
+    # deslocamento dos rótulos (m) onde os nomes se sobrepõem às divisas
+    desloca = {"Guaranesia": (-1500, 3500), "Guaxupe": (0, -3000), "Arceburgo": (800, -2500),
+               "Juruaia": (0, 1500), "Nova Resende": (1500, 0)}
+    fig, axs = plt.subplots(1, 2, figsize=(8.6, 3.6))
     for a, col, titulo, cmap in [(axs[0], "erro_rf", "MAE do Random Forest (sacas/ha)", "YlOrRd"),
-                                 (axs[1], "reducao_pct", "Redução do erro frente à baseline (%)", "RdYlGn")]:
+                                 (axs[1], "reducao_pct", "Redução do erro frente à persistência (%)", "RdYlGn")]:
         F.plot(ax=a, color="#F2F2F2", edgecolor="#BBBBBB", lw=0.4)
         extra = {"vmin": -50, "vmax": 50} if col == "reducao_pct" else {}
         G.plot(ax=a, column=col, cmap=cmap, edgecolor="k", lw=0.5, legend=True,
                legend_kwds={"shrink": 0.6}, **extra)
         for _, r in G.iterrows():
             p = r.geometry.representative_point()
-            a.annotate(f"{r.NM_MUN}\n{r[col]:.1f}".replace(".", ","), (p.x, p.y),
-                       ha="center", va="center", fontsize=6.3)
+            dx, dy = desloca.get(r.chave, (0, 0))
+            a.annotate(f"{r.NM_MUN}\n{r[col]:.1f}".replace(".", ",").replace("-", "\u2212"), (p.x + dx, p.y + dy),
+                       ha="center", va="center", fontsize=6.6)
         x0, y0, x1, y1 = G.total_bounds
         a.set_xlim(x0 - 4000, x1 + 4000)
         a.set_ylim(y0 - 4000, y1 + 4000)
         a.set_title(titulo, fontsize=9.5, fontweight="bold")
         a.set_axis_off()
+        fig.axes[-1].yaxis.set_major_formatter(virgula)
     plt.tight_layout()
-    plt.savefig(FIGURAS / "figura_mapa_erro_municipios.png", dpi=300)
+    plt.savefig(FIGURAS / "figura_mapa_erro_municipios.png", dpi=300, bbox_inches="tight", pad_inches=0.03)
     plt.close()
 except ImportError:
     print("[aviso] geopandas não instalado: mapa por município não gerado")

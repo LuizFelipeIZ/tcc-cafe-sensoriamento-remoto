@@ -2,24 +2,24 @@
  "serie_completa": {
   "N": 350,
   "clima_e_ndvi": {
-   "R2_do_residuo_fora_da_amostra": 0.257,
+   "R2_do_residuo_fora_da_amostra": 0.306,
    "MAE_so_linear": 5.93,
-   "MAE_linear_mais_RF": 5.05,
+   "MAE_linear_mais_RF": 4.87,
    "wilcoxon_comb_vs_linear": [
     0.0,
-    0.02,
-    22,
+    0.0067,
+    23,
     35
    ]
   },
   "so_clima": {
-   "R2_do_residuo_fora_da_amostra": 0.234,
+   "R2_do_residuo_fora_da_amostra": 0.301,
    "MAE_so_linear": 5.93,
-   "MAE_linear_mais_RF": 5.12,
+   "MAE_linear_mais_RF": 4.85,
    "wilcoxon_comb_vs_linear": [
     0.0,
-    0.0535,
-    21,
+    0.0034,
+    24,
     35
    ]
   },
@@ -35,50 +35,50 @@
    ]
   },
   "MDI_no_residuo_pct": {
-   "Tmin_Abs_Florada_t1": 19.0,
-   "Precip_Florada_t1": 18.7,
-   "NDVI_Florada": 15.1,
+   "Precip_Florada_t1": 19.9,
+   "Tmin_Abs_Florada_t1": 17.5,
+   "NDVI_Florada": 14.4,
+   "Tmin_Abs_Enchimento_Graos": 11.9,
    "Precip_Inverno_Risco_Geada_t1": 10.2,
-   "Tmin_Abs_Inverno_Risco_Geada_t1": 10.0,
-   "NDVI_Vigor_Maximo": 9.1,
-   "Tmin_Abs_Enchimento_Graos": 7.9,
-   "NDVI_Estresse_Maximo": 4.0,
-   "NDVI_Amplitude": 3.4,
-   "Precip_Enchimento_Graos": 2.5
+   "Tmin_Abs_Inverno_Risco_Geada_t1": 9.4,
+   "NDVI_Vigor_Maximo": 8.2,
+   "NDVI_Estresse_Maximo": 3.2,
+   "NDVI_Amplitude": 3.1,
+   "Precip_Enchimento_Graos": 2.0
   },
   "SHAP_no_residuo_pct": {
-   "NDVI_Florada": 23.8,
-   "Precip_Florada_t1": 22.5,
-   "Tmin_Abs_Florada_t1": 18.2,
-   "Precip_Inverno_Risco_Geada_t1": 9.1,
-   "Tmin_Abs_Inverno_Risco_Geada_t1": 7.2,
-   "NDVI_Vigor_Maximo": 6.9,
-   "Tmin_Abs_Enchimento_Graos": 6.1,
-   "NDVI_Estresse_Maximo": 3.4,
-   "NDVI_Amplitude": 1.7,
+   "Precip_Florada_t1": 22.7,
+   "NDVI_Florada": 21.1,
+   "Tmin_Abs_Florada_t1": 16.6,
+   "Tmin_Abs_Enchimento_Graos": 12.3,
+   "Precip_Inverno_Risco_Geada_t1": 9.3,
+   "Tmin_Abs_Inverno_Risco_Geada_t1": 7.4,
+   "NDVI_Vigor_Maximo": 5.5,
+   "NDVI_Estresse_Maximo": 2.5,
+   "NDVI_Amplitude": 1.5,
    "Precip_Enchimento_Graos": 1.1
   }
  },
  "sem_1991_2002": {
   "N": 230,
   "clima_e_ndvi": {
-   "R2_do_residuo_fora_da_amostra": 0.377,
+   "R2_do_residuo_fora_da_amostra": 0.38,
    "MAE_so_linear": 5.86,
-   "MAE_linear_mais_RF": 4.35,
+   "MAE_linear_mais_RF": 4.33,
    "wilcoxon_comb_vs_linear": [
     0.0,
-    0.0035,
+    0.0024,
     16,
     23
    ]
   },
   "so_clima": {
-   "R2_do_residuo_fora_da_amostra": 0.348,
+   "R2_do_residuo_fora_da_amostra": 0.373,
    "MAE_so_linear": 5.86,
-   "MAE_linear_mais_RF": 4.51,
+   "MAE_linear_mais_RF": 4.42,
    "wilcoxon_comb_vs_linear": [
     0.0,
-    0.0135,
+    0.006,
     16,
     23
    ]
@@ -95,27 +95,27 @@
    ]
   },
   "MDI_no_residuo_pct": {
-   "NDVI_Florada": 19.6,
-   "Tmin_Abs_Florada_t1": 15.4,
-   "Precip_Inverno_Risco_Geada_t1": 11.8,
+   "NDVI_Florada": 19.5,
+   "Tmin_Abs_Florada_t1": 14.6,
+   "Precip_Inverno_Risco_Geada_t1": 11.3,
    "NDVI_Estresse_Maximo": 10.5,
-   "NDVI_Amplitude": 10.4,
-   "Tmin_Abs_Inverno_Risco_Geada_t1": 10.3,
-   "Precip_Florada_t1": 8.3,
-   "Tmin_Abs_Enchimento_Graos": 5.0,
-   "Precip_Enchimento_Graos": 4.8,
-   "NDVI_Vigor_Maximo": 3.8
+   "NDVI_Amplitude": 10.3,
+   "Tmin_Abs_Inverno_Risco_Geada_t1": 9.9,
+   "Precip_Florada_t1": 8.8,
+   "Tmin_Abs_Enchimento_Graos": 5.8,
+   "Precip_Enchimento_Graos": 5.3,
+   "NDVI_Vigor_Maximo": 4.0
   },
   "SHAP_no_residuo_pct": {
-   "NDVI_Florada": 25.4,
-   "Tmin_Abs_Florada_t1": 14.2,
-   "NDVI_Estresse_Maximo": 13.5,
-   "Tmin_Abs_Inverno_Risco_Geada_t1": 12.3,
-   "Precip_Florada_t1": 11.0,
-   "NDVI_Amplitude": 9.0,
-   "Precip_Inverno_Risco_Geada_t1": 7.4,
-   "Tmin_Abs_Enchimento_Graos": 2.9,
-   "Precip_Enchimento_Graos": 2.1,
+   "NDVI_Florada": 24.9,
+   "Tmin_Abs_Florada_t1": 13.6,
+   "NDVI_Estresse_Maximo": 13.3,
+   "Tmin_Abs_Inverno_Risco_Geada_t1": 11.9,
+   "Precip_Florada_t1": 10.9,
+   "NDVI_Amplitude": 8.5,
+   "Precip_Inverno_Risco_Geada_t1": 7.2,
+   "Precip_Enchimento_Graos": 4.4,
+   "Tmin_Abs_Enchimento_Graos": 3.5,
    "NDVI_Vigor_Maximo": 2.0
   }
  }

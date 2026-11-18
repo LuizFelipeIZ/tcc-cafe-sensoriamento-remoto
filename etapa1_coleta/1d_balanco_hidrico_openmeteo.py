@@ -48,11 +48,13 @@ ND = [13.2, 12.8, 12.2, 11.6, 11.0, 10.7, 10.8, 11.3, 11.9, 12.6, 13.1, 13.4]
 DIAS_MES = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 ANO_INI, ANO_FIM, BLOCO = 1987, 2023, 5
 
+# Sede de cada município. Itamogi e Juruaia foram corrigidas: as coordenadas antigas caíam em
+# Monte Santo de Minas e em Guaxupé (conferido na Malha Municipal do IBGE).
 SEDES = {   # (latitude, longitude)
     "Arceburgo": (-21.3636, -46.9391), "Cabo Verde": (-21.4727, -46.3980),
     "Guaranesia": (-21.2986, -46.8005), "Guaxupe": (-21.3052, -46.7122),
-    "Itamogi": (-21.2369, -47.0177), "Jacui": (-21.0583, -46.6694),
-    "Juruaia": (-21.3197, -46.6027), "Monte Belo": (-21.3211, -46.2936),
+    "Itamogi": (-21.0758, -47.0478), "Jacui": (-21.0583, -46.6694),
+    "Juruaia": (-21.2539, -46.5739), "Monte Belo": (-21.3211, -46.2936),
     "Muzambinho": (-21.3755, -46.5277), "Nova Resende": (-21.1238, -46.4216),
 }
 
