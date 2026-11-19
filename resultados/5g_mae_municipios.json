@@ -1,0 +1,134 @@
+{
+ "C1": {
+  "Guaxupé": {
+   "MAE": 2.73,
+   "MAE_eventos": 2.33,
+   "MAE_persistencia": 5.9
+  },
+  "Muzambinho": {
+   "MAE": 4.11,
+   "MAE_eventos": 3.63,
+   "MAE_persistencia": 5.73
+  },
+  "Nova Resende": {
+   "MAE": 5.64,
+   "MAE_eventos": 4.39,
+   "MAE_persistencia": 7.27
+  },
+  "Cabo Verde": {
+   "MAE": 3.2,
+   "MAE_eventos": 2.05,
+   "MAE_persistencia": 6.35
+  }
+ },
+ "C2": {
+  "Guaxupé": {
+   "MAE": 2.87,
+   "MAE_eventos": 3.38,
+   "MAE_persistencia": 5.9
+  },
+  "Muzambinho": {
+   "MAE": 4.3,
+   "MAE_eventos": 3.07,
+   "MAE_persistencia": 5.73
+  },
+  "Nova Resende": {
+   "MAE": 5.88,
+   "MAE_eventos": 6.32,
+   "MAE_persistencia": 7.27
+  },
+  "Cabo Verde": {
+   "MAE": 3.5,
+   "MAE_eventos": 2.82,
+   "MAE_persistencia": 6.35
+  }
+ },
+ "C3": {
+  "Guaxupé": {
+   "MAE": 3.34,
+   "MAE_eventos": 3.02,
+   "MAE_persistencia": 5.9
+  },
+  "Muzambinho": {
+   "MAE": 4.03,
+   "MAE_eventos": 3.14,
+   "MAE_persistencia": 5.73
+  },
+  "Nova Resende": {
+   "MAE": 5.41,
+   "MAE_eventos": 2.8,
+   "MAE_persistencia": 7.27
+  },
+  "Cabo Verde": {
+   "MAE": 3.8,
+   "MAE_eventos": 2.18,
+   "MAE_persistencia": 6.35
+  }
+ },
+ "C4": {
+  "Guaxupé": {
+   "MAE": 2.9,
+   "MAE_eventos": 3.33,
+   "MAE_persistencia": 5.9
+  },
+  "Muzambinho": {
+   "MAE": 4.02,
+   "MAE_eventos": 3.91,
+   "MAE_persistencia": 5.73
+  },
+  "Nova Resende": {
+   "MAE": 5.74,
+   "MAE_eventos": 5.96,
+   "MAE_persistencia": 7.27
+  },
+  "Cabo Verde": {
+   "MAE": 3.29,
+   "MAE_eventos": 2.5,
+   "MAE_persistencia": 6.35
+  }
+ },
+ "C5": {
+  "Guaxupé": {
+   "MAE": 3.47,
+   "MAE_persistencia": 3.54,
+   "N": 4
+  },
+  "Muzambinho": {
+   "MAE": 3.6,
+   "MAE_persistencia": 2.86,
+   "N": 4
+  },
+  "Nova Resende": {
+   "MAE": 5.65,
+   "MAE_persistencia": 3.42,
+   "N": 4
+  },
+  "Cabo Verde": {
+   "MAE": 2.92,
+   "MAE_persistencia": 2.64,
+   "N": 4
+  }
+ },
+ "C6": {
+  "Guaxupé": {
+   "MAE": 6.58,
+   "MAE_persistencia": 5.65,
+   "N": 7
+  },
+  "Muzambinho": {
+   "MAE": 7.27,
+   "MAE_persistencia": 4.89,
+   "N": 7
+  },
+  "Nova Resende": {
+   "MAE": 5.75,
+   "MAE_persistencia": 6.89,
+   "N": 7
+  },
+  "Cabo Verde": {
+   "MAE": 4.62,
+   "MAE_persistencia": 7.33,
+   "N": 7
+  }
+ }
+}

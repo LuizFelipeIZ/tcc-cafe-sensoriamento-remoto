@@ -23,6 +23,7 @@ ETAPAS = [
     "etapa5_avaliacao/5d_figuras_metodologia.py",
     "etapa5_avaliacao/5e_numeros_do_texto.py",
     "etapa5_avaliacao/5f_cenarios.py",
+    "etapa5_avaliacao/5g_series_por_cenario.py",
 ]
 EXPERIMENTOS = [
     "experimentos/e1_validacao_espacial_e_temporal.py",

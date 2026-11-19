@@ -9,7 +9,7 @@ Usa as estimativas fora da amostra salvas pela etapa 4a
    (a média das árvores reduz a variância, mas puxa as estimativas para o
    centro: superestima safras muito baixas e subestima as muito altas)
 2. Produtividade média e erro por município, com o ganho sobre a persistência
-   (Figura 4 do TCC).
+   (Figura 7 do TCC).
 3. Observado x estimado, lado a lado com a baseline (figura de dispersão).
 4. Por que tirar 1991-2002: numa regressão linear do rendimento na tendência
    e na anomalia bienal, o sinal da anomalia muda. Numa cultura bienal ele
@@ -24,7 +24,7 @@ Como rodar
 
 Saídas: resultados/5c_diagnosticos.json, resultados/erro_por_municipio.csv,
         resultados/figuras/figura_obs_vs_estimado.png,
-        resultados/figuras/figura4_mapa_municipios.png
+        resultados/figuras/figura7_mapa_municipios.png
 """
 import sys
 import unicodedata
@@ -143,7 +143,7 @@ try:
         a.set_axis_off()
         fig.axes[-1].yaxis.set_major_formatter(virgula)
     plt.tight_layout()
-    plt.savefig(FIGURAS / "figura4_mapa_municipios.png", dpi=300, bbox_inches="tight", pad_inches=0.03)
+    plt.savefig(FIGURAS / "figura7_mapa_municipios.png", dpi=300, bbox_inches="tight", pad_inches=0.03)
     plt.close()
 except ImportError:
     print("[aviso] geopandas não instalado: mapa por município não gerado")

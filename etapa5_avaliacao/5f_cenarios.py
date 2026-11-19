@@ -1,6 +1,6 @@
 """
-ETAPA 5f: os seis cenários do TCC (Tabelas 1 e 3, Figura 3)
-===========================================================
+ETAPA 5f: os seis cenários do TCC (Tabelas 1 e 3; dispersão real x estimada)
+============================================================================
 
 Pergunta
 --------
@@ -26,7 +26,7 @@ a ordem das colunas é a mesma da etapa 4a, então as estimativas são idêntica
 
 Saídas em resultados/:
   5f_cenarios.json, tabela1_cenarios.csv, cenarios_predicoes.csv,
-  tabela3_safras_de_evento.csv, figuras/figura3_real_estimada.png
+  tabela3_safras_de_evento.csv, figuras/real_estimada_dispersao.png
 
     python etapa5_avaliacao/5f_cenarios.py   (~2 min)
 """
@@ -146,7 +146,7 @@ saida["clima_variacao_entre_safras_pct"] = {
     v: round(float(100 * base.groupby(ANO)[v].transform("mean").var() / base[v].var()), 1) for v in CLIMA}
 salvar_json(saida, "5f_cenarios.json")
 
-# Figura 3: produtividade real x estimada, um painel por cenário -------------------------
+# Dispersão real x estimada, um painel por cenário (fora do TCC; ver a etapa 5g) -------------------------
 fig, axs = plt.subplots(2, 3, figsize=(6.3, 4.45), sharex=True, sharey=True)
 lim = (0, 50)
 pers_kfold = float(np.mean(np.abs(P.real - P.persistencia_M)))
@@ -173,7 +173,7 @@ for a in axs[1]:
 for a in axs[:, 0]:
     a.set_ylabel("Estimada (sacas/ha)")
 plt.tight_layout(w_pad=0.6, h_pad=0.8)
-plt.savefig(FIGURAS / "figura3_real_estimada.png", dpi=300)
+plt.savefig(FIGURAS / "real_estimada_dispersao.png", dpi=300)
 plt.close()
 salvar_json(saida, "5f_cenarios.json")
 print(json.dumps({k: (v["MAE"] if isinstance(v, dict) and "MAE" in v else None) for k, v in saida.items()}))

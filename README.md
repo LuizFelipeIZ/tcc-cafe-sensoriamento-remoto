@@ -122,11 +122,12 @@ tcc-cafe-sensoriamento-remoto/
 │   └── 4b_previsores_intrasafra.py             cenários 5 e 6 (Tabela 2)
 │
 ├── etapa5_avaliacao/              ETAPA 5: avaliação dos cenários
-│   ├── 5a_importancia_mdi.py                   importância MDI (Figura 5)
-│   ├── 5c_erros_e_diagnosticos.py              produtividade e erro por município (Figura 4), viés
+│   ├── 5a_importancia_mdi.py                   importância MDI (Figura 8)
+│   ├── 5c_erros_e_diagnosticos.py              produtividade e erro por município (Figura 7), viés
 │   ├── 5d_figuras_metodologia.py               Figuras 1 e 2, séries
 │   ├── 5e_numeros_do_texto.py                  números citados no texto
-│   └── 5f_cenarios.py                          cenários 1 a 6 (Tabelas 1 e 3, Figura 3)
+│   ├── 5f_cenarios.py                          cenários 1 a 6 (Tabelas 1 e 3)
+│   └── 5g_series_por_cenario.py                real x estimada em 4 municípios (Figuras 3 a 6, 9 e 10)
 │
 ├── experimentos/                  testes que guiaram as escolhas + versões anteriores
 ├── extras/                        imagens de satélite para a apresentação (GEE)
@@ -236,7 +237,8 @@ O modelo **nunca** usa o rendimento da safra que estima. A média móvel é calc
 * **5c.** Produtividade média e erro por município (mapa), viés por faixa de rendimento e a mudança de sinal da anomalia bienal com e sem 1991-2002.
 * **5d.** Figuras de apoio: fluxograma, área de estudo e séries.
 * **5e.** Números citados no texto que não estão nas outras saídas (resumo do clima e hiperparâmetros do modelo final).
-* **5f.** Os seis cenários: MAE, RMSE e R² dos cenários 1 a 4; Wilcoxon de cada cenário contra a persistência e dos cenários 2, 3 e 4 contra o Cenário 1, com ajuste de Holm sobre as 6 comparações (3 cenários × observação e safra); produtividade real × estimada por cenário, inclusive nas safras de evento; R² dos previsores.
+* **5f.** Os seis cenários: MAE, RMSE e R² dos cenários 1 a 4; Wilcoxon de cada cenário contra a persistência e dos cenários 2, 3 e 4 contra o Cenário 1, com ajuste de Holm sobre as 6 comparações (3 cenários × observação e safra); produtividade real × estimada nas safras de evento; R² dos previsores.
+* **5g.** Uma figura por cenário com a produtividade real (IBGE) e a estimada ao longo da série em Guaxupé, Muzambinho, Nova Resende e Cabo Verde, com a persistência histórica, as safras após geada ou seca sombreadas e o MAE do cenário em cada município.
 
 A análise SHAP, que atribuía o dano de cada evento ao clima e ao NDVI, saiu do texto do TCC e ficou como experimento (`experimentos/e5_dano_shap_por_evento.py`).
 
@@ -262,17 +264,36 @@ p: Wilcoxon pareado por safra (N = 35). Por observação (N = 350), todos os cen
 
 O Cenário 1, só com tendência e anomalia bienal, teve o menor erro, e acrescentar clima, NDVI ou os dois não o reduziu: **a hipótese foi rejeitada**. Com a safra inteira fora do treino, o ganho some, porque sem os outros municípios da mesma safra o modelo erra quase como a persistência.
 
-### Figura 3: produtividade real × estimada, por cenário
+### Figuras 3 a 6: produtividade real × estimada nos cenários 1 a 4, em quatro municípios
 
-![Real x estimada](resultados/figuras/figura3_real_estimada.png)
+![Cenário 1](resultados/figuras/figura3_cenario1.png)
+![Cenário 2](resultados/figuras/figura4_cenario2.png)
+![Cenário 3](resultados/figuras/figura5_cenario3.png)
+![Cenário 4](resultados/figuras/figura6_cenario4.png)
 
-Os quatro cenários comprimem os extremos: superestimam as safras abaixo de 12 sacas/ha (+7,6 no Cenário 4) e subestimam as acima de 35 (−13,1). Os previsores (cenários 5 e 6) tiveram R² negativo, isto é, erraram mais que a média das safras de teste.
+| Município | Cen. 1 | Cen. 2 | Cen. 3 | Cen. 4 | Persistência |
+|---|---|---|---|---|---|
+| Guaxupé | 2,73 (2,33) | 2,87 (3,38) | 3,34 (3,02) | 2,90 (3,33) | 5,90 |
+| Muzambinho | 4,11 (3,63) | 4,30 (3,07) | 4,03 (3,14) | 4,02 (3,91) | 5,73 |
+| Nova Resende | 5,64 (4,39) | 5,88 (6,32) | 5,41 (2,80) | 5,74 (5,96) | 7,27 |
+| Cabo Verde | 3,20 (2,05) | 3,50 (2,82) | 3,80 (2,18) | 3,29 (2,50) | 6,35 |
 
-### Figura 4: produtividade média e erro por município
+MAE em sacas/ha na série; entre parênteses, nas safras após os eventos (1995, 1996, 2014, 2015, 2022 e 2023). Os quatro cenários comprimem os extremos: superestimam as safras abaixo de 12 sacas/ha (+7,6 no Cenário 4) e subestimam as acima de 35 (−13,1). Após a geada de 1994, o Cenário 3 (NDVI) foi o que mais se aproximou da queda nos quatro municípios; o clima (cenários 2 e 4) elevou a estimativa de Nova Resende em 1995 para cerca de 23 sacas/ha, contra 8,9 reais.
 
-![Mapa](resultados/figuras/figura4_mapa_municipios.png)
+### Figura 7: produtividade média e erro por município
+
+![Mapa](resultados/figuras/figura7_mapa_municipios.png)
 
 A produtividade média foi de 22,5 sacas/ha, de 20,1 (Muzambinho) a 24,7 (Nova Resende). O Cenário 4 errou menos que a persistência em 9 dos 10 municípios, de 14% (Juruaia) a 51% (Guaxupé); Monte Belo foi o único em que a persistência errou menos.
+
+### Figura 8: importância das variáveis (MDI) no Cenário 4
+
+![Importância](resultados/figuras/figura8_importancia_mdi.png)
+
+* Tendência temporal 30,0%, anomalia bienal 16,2%, chuva na florada (t−1) e chuva no inverno (t−1), 8,7% cada.
+* Controles 46,2%, clima 38,3%, NDVI 15,5%.
+* Dentro do clima: florada (t−1) 44%, inverno (t−1) 33%, enchimento 23%, estáveis nos 5 modelos do K-Fold (41-51%, 24-33% e 19-26%).
+* Importância não é contribuição: o clima tem 38% da importância, mas o Cenário 2 não erra menos que o 1. De 79% a 97% da variação de cada variável climática ocorre entre safras, e não entre municípios; por isso o clima também marca o ano, papel que a tendência temporal cumpre quando ele é retirado.
 
 ### Tabela 2: cenários 5 e 6, previsores em janela expansiva (`tabela2_previsores.csv`)
 
@@ -284,14 +305,10 @@ A produtividade média foi de 22,5 sacas/ha, de 20,1 (Muzambinho) a 24,7 (Nova R
 
 Base: Cenário 1 treinado na mesma janela expansiva. \* Exclusão definida depois de ver os resultados (safras com valores repetidos no IBGE); vale só como sensibilidade. Os intervalos P10-P90 das árvores cobriram 75% (seca) e 70% (geada) dos valores reais, abaixo dos 80% esperados.
 
-### Figura 5: importância das variáveis (MDI) no Cenário 4
+![Cenário 5](resultados/figuras/figura9_cenario5.png)
+![Cenário 6](resultados/figuras/figura10_cenario6.png)
 
-![Importância](resultados/figuras/figura5_importancia_mdi.png)
-
-* Tendência temporal 30,0%, anomalia bienal 16,2%, chuva na florada (t−1) e chuva no inverno (t−1), 8,7% cada.
-* Controles 46,2%, clima 38,3%, NDVI 15,5%.
-* Dentro do clima: florada (t−1) 44%, inverno (t−1) 33%, enchimento 23%, estáveis nos 5 modelos do K-Fold (41-51%, 24-33% e 19-26%).
-* Importância não é contribuição: o clima tem 38% da importância, mas o Cenário 2 não erra menos que o 1. De 79% a 97% da variação de cada variável climática ocorre entre safras, e não entre municípios; por isso o clima também marca o ano, papel que a tendência temporal cumpre quando ele é retirado.
+Figuras 9 e 10: os previsores nas safras de teste dos mesmos quatro municípios. O de seca indicou em 2014 uma queda que o IBGE não registrou e só superou a persistência em Guaxupé; o de geada estimou cerca de 17 sacas/ha em 1995, entre a produtividade real (8,9 a 13,8) e a persistência (20,1 a 20,9), e superou a persistência em Nova Resende e Cabo Verde.
 
 ### Tabela 3: produtividade real e estimada nas safras de evento (`tabela3_safras_de_evento.csv`)
 

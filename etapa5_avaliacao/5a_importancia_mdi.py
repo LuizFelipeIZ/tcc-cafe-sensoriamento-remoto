@@ -30,7 +30,7 @@ Como rodar
     python etapa5_avaliacao/5a_importancia_mdi.py   (~30 s)
 
 Saídas: resultados/5a_importancia.json,
-        resultados/figuras/figura5_importancia_mdi.png
+        resultados/figuras/figura8_importancia_mdi.png
 """
 import sys
 from pathlib import Path
@@ -113,7 +113,7 @@ b.set_xlabel("Importância MDI (%)")
 b.set_title("(b) Por fase e grupo", fontsize=9.5, fontweight="bold", loc="left")
 b.spines[["top", "right"]].set_visible(False)
 plt.tight_layout()
-plt.savefig(FIGURAS / "figura5_importancia_mdi.png", dpi=300)
+plt.savefig(FIGURAS / "figura8_importancia_mdi.png", dpi=300)
 plt.close()
 
 print("MDI (%):", saida["MDI_pct"])
