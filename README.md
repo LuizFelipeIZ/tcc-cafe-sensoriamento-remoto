@@ -1,4 +1,4 @@
-# Clima e NDVI na estimativa da produtividade do café arábica com Random Forest
+# Contribuição do clima e do NDVI para estimar e antecipar a produtividade do café arábica com Random Forest
 
 Trabalho de Conclusão de Curso em **Engenharia Agronômica**, Instituto Federal do Sul de Minas Gerais (IFSULDEMINAS), Campus Muzambinho.
 
@@ -238,7 +238,7 @@ O modelo **nunca** usa o rendimento da safra que estima. A média móvel é calc
 * **5d.** Figuras de apoio: fluxograma, área de estudo e séries.
 * **5e.** Números citados no texto que não estão nas outras saídas (resumo do clima e hiperparâmetros do modelo final).
 * **5f.** Os seis cenários: MAE, RMSE e R² dos cenários 1 a 4; Wilcoxon de cada cenário contra a persistência e dos cenários 2, 3 e 4 contra o Cenário 1, com ajuste de Holm sobre as 6 comparações (3 cenários × observação e safra); produtividade real × estimada nas safras de evento; R² dos previsores.
-* **5g.** Uma figura por cenário com a produtividade real (IBGE) e a estimada ao longo da série em Guaxupé, Muzambinho, Nova Resende e Cabo Verde, com a persistência histórica, as safras após geada ou seca sombreadas e o MAE do cenário em cada município.
+* **5g.** Uma figura por cenário com a produtividade real (IBGE) e a estimada ao longo da série em Guaxupé, Muzambinho, Nova Resende e Cabo Verde, com a persistência histórica, as safras após geada ou seca sombreadas e o MAE do cenário em cada município. A faixa entre a real e a estimada é o erro (laranja: superestimativa; azul: subestimativa). Duas versões: 1 × 4 painéis para o texto e 2 × 2, com os eventos rotulados, para os slides (`resultados/figuras/apresentacao/`).
 
 A análise SHAP, que atribuía o dano de cada evento ao clima e ao NDVI, saiu do texto do TCC e ficou como experimento (`experimentos/e5_dano_shap_por_evento.py`).
 
