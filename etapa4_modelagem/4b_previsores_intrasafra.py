@@ -1,5 +1,5 @@
 """
-ETAPA 4b: previsores de seca e de geada, cenários 5 e 6 (Tabela 3 do TCC)
+ETAPA 4b: previsores de seca e de geada, cenários 5 e 6 (Tabela 2 do TCC)
 =========================================================================
 
 Pergunta
@@ -35,7 +35,7 @@ Como rodar
 ----------
     python etapa4_modelagem/4b_previsores_intrasafra.py   (~30 s)
 
-Saídas em resultados/: 4b_previsores.json, tabela3_previsores.csv,
+Saídas em resultados/: 4b_previsores.json, tabela2_previsores.csv,
 previsor_seca.csv, previsor_geada.csv
 """
 import sys
@@ -137,7 +137,7 @@ for nome, cfg in PREVISORES.items():
 
 salvar_json(saida, "4b_previsores.json")
 pd.DataFrame(tabela, columns=["previsor", "safras", "N", "MAE_RF", "MAE_so_controles", "MAE_baseline",
-                              "p_Wilcoxon_RF_vs_baseline"]).to_csv(RESULTADOS / "tabela3_previsores.csv", index=False)
+                              "p_Wilcoxon_RF_vs_baseline"]).to_csv(RESULTADOS / "tabela2_previsores.csv", index=False)
 
 for nome, s in saida.items():
     print(f"{nome:22s} N={s['N']:3d}  RF {s['MAE_rf']:.2f}  só controles {s['MAE_so_controles']:.2f}  "

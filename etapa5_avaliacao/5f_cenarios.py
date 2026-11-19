@@ -1,5 +1,5 @@
 """
-ETAPA 5f: os seis cenários do TCC (Tabelas 1 e 2, Figura 3)
+ETAPA 5f: os seis cenários do TCC (Tabelas 1 e 3, Figura 3)
 ===========================================================
 
 Pergunta
@@ -26,7 +26,7 @@ a ordem das colunas é a mesma da etapa 4a, então as estimativas são idêntica
 
 Saídas em resultados/:
   5f_cenarios.json, tabela1_cenarios.csv, cenarios_predicoes.csv,
-  tabela2_safras_de_evento.csv, figuras/figura3_real_estimada.png
+  tabela3_safras_de_evento.csv, figuras/figura3_real_estimada.png
 
     python etapa5_avaliacao/5f_cenarios.py   (~2 min)
 """
@@ -116,7 +116,7 @@ for c, rotulo in [("C5", "Previsor de seca"), ("C6", "Previsor de geada")]:
                 "MAE": round(float(t.erro_rf.mean()), 2), "MAE_persistencia": round(float(t.erro_baseline_M.mean()), 2),
                 "RMSE": round(float(np.sqrt(((t.rf - t.real) ** 2).mean())), 2)}
 
-# Tabela 2: produtividade real e estimada nas safras de evento ---------------------------
+# Tabela 3: produtividade real e estimada nas safras de evento ---------------------------
 EVENTOS = [(1995, "Geada 1994, 1ª safra", (1992, 1994)), (1996, "Geada 1994, 2ª safra", (1992, 1994)),
            (2014, "Seca 2014, enchimento", (2011, 2013)), (2015, "Seca 2014, florada", (2011, 2013)),
            (2022, "Geada 2021, 1ª safra", (2019, 2021)), (2023, "Geada 2021, 2ª safra", (2019, 2021))]
@@ -136,7 +136,7 @@ for safra, rotulo, (a0, a1) in EVENTOS:
     linha["MAE_por_cenario"] = {c: round(float((q[c] - q.real).abs().mean()), 2) for c in CENARIOS}
     ev.append(linha)
 tab3 = pd.DataFrame(ev)
-tab3.drop(columns="MAE_por_cenario").round(1).to_csv(RESULTADOS / "tabela2_safras_de_evento.csv", index=False)
+tab3.drop(columns="MAE_por_cenario").round(1).to_csv(RESULTADOS / "tabela3_safras_de_evento.csv", index=False)
 saida["safras_de_evento"] = json.loads(tab3.round(2).to_json(orient="records", force_ascii=False))
 
 # Quanto da variação de cada variável climática ocorre ENTRE safras (e não entre municípios)?

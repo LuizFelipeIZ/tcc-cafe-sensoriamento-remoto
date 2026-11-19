@@ -119,14 +119,14 @@ tcc-cafe-sensoriamento-remoto/
 │
 ├── etapa4_modelagem/              ETAPA 4: Random Forest e previsores
 │   ├── 4a_random_forest_kfold_aninhado.py      K-Fold aninhado e safra inteira fora
-│   └── 4b_previsores_intrasafra.py             cenários 5 e 6 (Tabela 3)
+│   └── 4b_previsores_intrasafra.py             cenários 5 e 6 (Tabela 2)
 │
 ├── etapa5_avaliacao/              ETAPA 5: avaliação dos cenários
 │   ├── 5a_importancia_mdi.py                   importância MDI (Figura 5)
 │   ├── 5c_erros_e_diagnosticos.py              produtividade e erro por município (Figura 4), viés
 │   ├── 5d_figuras_metodologia.py               Figuras 1 e 2, séries
 │   ├── 5e_numeros_do_texto.py                  números citados no texto
-│   └── 5f_cenarios.py                          cenários 1 a 6 (Tabelas 1 e 2, Figura 3)
+│   └── 5f_cenarios.py                          cenários 1 a 6 (Tabelas 1 e 3, Figura 3)
 │
 ├── experimentos/                  testes que guiaram as escolhas + versões anteriores
 ├── extras/                        imagens de satélite para a apresentação (GEE)
@@ -274,6 +274,16 @@ Os quatro cenários comprimem os extremos: superestimam as safras abaixo de 12 s
 
 A produtividade média foi de 22,5 sacas/ha, de 20,1 (Muzambinho) a 24,7 (Nova Resende). O Cenário 4 errou menos que a persistência em 9 dos 10 municípios, de 14% (Juruaia) a 51% (Guaxupé); Monte Belo foi o único em que a persistência errou menos.
 
+### Tabela 2: cenários 5 e 6, previsores em janela expansiva (`tabela2_previsores.csv`)
+
+| Cenário | Safras de teste | Previsor | Base | Persistência M(t) | p (previsor × persistência) |
+|---|---|---|---|---|---|
+| 5 Seca | 2014 a 2017 (N = 40) | 4,16 | 4,27 | 4,21 | > 0,99 |
+| 6 Geada | 1994, 1995, 2000, 2001, 2021, 2022, 2023 (N = 70) | 6,90 | 7,28 | 5,91 | 0,98 |
+| 6 Geada, sem 2000 e 2001* | (N = 50) | 4,61 | 5,87 | 5,71 | 0,015 |
+
+Base: Cenário 1 treinado na mesma janela expansiva. \* Exclusão definida depois de ver os resultados (safras com valores repetidos no IBGE); vale só como sensibilidade. Os intervalos P10-P90 das árvores cobriram 75% (seca) e 70% (geada) dos valores reais, abaixo dos 80% esperados.
+
 ### Figura 5: importância das variáveis (MDI) no Cenário 4
 
 ![Importância](resultados/figuras/figura5_importancia_mdi.png)
@@ -283,7 +293,7 @@ A produtividade média foi de 22,5 sacas/ha, de 20,1 (Muzambinho) a 24,7 (Nova R
 * Dentro do clima: florada (t−1) 44%, inverno (t−1) 33%, enchimento 23%, estáveis nos 5 modelos do K-Fold (41-51%, 24-33% e 19-26%).
 * Importância não é contribuição: o clima tem 38% da importância, mas o Cenário 2 não erra menos que o 1. De 79% a 97% da variação de cada variável climática ocorre entre safras, e não entre municípios; por isso o clima também marca o ano, papel que a tendência temporal cumpre quando ele é retirado.
 
-### Tabela 2: produtividade real e estimada nas safras de evento (`tabela2_safras_de_evento.csv`)
+### Tabela 3: produtividade real e estimada nas safras de evento (`tabela3_safras_de_evento.csv`)
 
 Média dos 10 municípios. Queda: em relação à média das três safras anteriores ao evento.
 
@@ -297,16 +307,6 @@ Média dos 10 municípios. Queda: em relação à média das três safras anteri
 | 2023 | Geada 2021, 2ª safra | 24,6 | −2,7 | 24,6 | 23,4 | 25,7 | 24,7 | 25,0 | 27,9 |
 
 Cen. 5 (seca) em 2014 e 2015; Cen. 6 (geada) em 1995, 2022 e 2023. Os cenários 1 a 4 acompanham a queda de 2022 com quase o mesmo valor, porque o acerto vem dos municípios da mesma safra no treino, e não das variáveis climáticas. O IBGE não registra queda na seca de 2014.
-
-### Tabela 3: cenários 5 e 6, previsores em janela expansiva (`tabela3_previsores.csv`)
-
-| Cenário | Safras de teste | Previsor | Base | Persistência M(t) | p (previsor × persistência) |
-|---|---|---|---|---|---|
-| 5 Seca | 2014 a 2017 (N = 40) | 4,16 | 4,27 | 4,21 | > 0,99 |
-| 6 Geada | 1994, 1995, 2000, 2001, 2021, 2022, 2023 (N = 70) | 6,90 | 7,28 | 5,91 | 0,98 |
-| 6 Geada, sem 2000 e 2001* | (N = 50) | 4,61 | 5,87 | 5,71 | 0,015 |
-
-Base: Cenário 1 treinado na mesma janela expansiva. \* Exclusão definida depois de ver os resultados (safras com valores repetidos no IBGE); vale só como sensibilidade. Os intervalos P10-P90 das árvores cobriram 75% (seca) e 70% (geada) dos valores reais, abaixo dos 80% esperados.
 
 ---
 
