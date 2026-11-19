@@ -1,4 +1,4 @@
-# Sensoriamento remoto e aprendizado de máquina na estimativa da produtividade e do dano climático no café arábica
+# Clima e NDVI na estimativa da produtividade do café arábica com Random Forest
 
 Trabalho de Conclusão de Curso em **Engenharia Agronômica**, Instituto Federal do Sul de Minas Gerais (IFSULDEMINAS), Campus Muzambinho.
 
