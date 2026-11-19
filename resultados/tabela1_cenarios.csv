@@ -1,0 +1,13 @@
+conjunto,cenario,MAE,RMSE,R2,p_safra_vs_M,p_safra_vs_C1_[Holm]
+serie_completa,Persistência histórica M(t),6.26,8.11,0.054,,
+serie_completa,C1 Base,4.54,6.26,0.438,0.0032,
+serie_completa,C2 Base + clima,4.71,6.44,0.405,0.0191,0.3507 [1.0]
+serie_completa,C3 Base + NDVI,4.76,6.38,0.415,0.0287,0.3341 [1.0]
+serie_completa,C4 Completo,4.69,6.38,0.415,0.0144,0.2947 [1.0]
+serie_completa,"C4 Completo, safra inteira fora",6.05,7.86,0.113,0.728,
+sem_1991_2002,Persistência histórica M(t),6.2,7.79,0.104,,
+sem_1991_2002,C1 Base,4.18,5.4,0.57,0.0091,
+sem_1991_2002,C2 Base + clima,4.24,5.48,0.556,0.0301,0.9168 [1.0]
+sem_1991_2002,C3 Base + NDVI,4.34,5.55,0.545,0.0749,0.2467 [1.0]
+sem_1991_2002,C4 Completo,4.19,5.4,0.569,0.0301,0.709 [1.0]
+sem_1991_2002,"C4 Completo, safra inteira fora",6.08,7.47,0.175,0.709,

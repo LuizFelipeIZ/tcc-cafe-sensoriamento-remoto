@@ -1,6 +1,13 @@
 """
-ETAPA 5b: dano climático em sacas/ha nas safras de evento (Tabela 3 do TCC)
-==========================================================================
+EXPERIMENTO e5: dano climático pelo SHAP nas safras de evento
+==============================================================
+
+Fora do texto final. Esta análise atribuía o dano de cada evento ao clima e
+ao NDVI pela soma dos valores SHAP. Saiu do TCC porque confundia mais do que
+ajudava: o SHAP atribui parte da estimativa ao clima mesmo quando retirar o
+clima não muda o erro (Cenário 1 x Cenário 2, etapa 5f). No texto, a
+importância das variáveis ficou só com o MDI (etapa 5a) e o real x estimado
+nas safras de evento, com a etapa 5f.
 
 Ideia
 -----
@@ -21,10 +28,10 @@ de 2014 (com a safra de 2015).
 
 Parte 2: a 1ª e a 2ª safra afetada, com referência fixa
 -------------------------------------------------------
-Na Tabela 3, cada safra é comparada com a média das TRÊS SAFRAS ANTERIORES A
+Na tabela da parte 1, cada safra é comparada com a média das TRÊS SAFRAS ANTERIORES A
 ELA. Na segunda safra após um evento, essa média já inclui as safras
 danificadas, e a queda some: em 2023, M(t) é a média de 2020, 2021 e 2022, e
-a Tabela 3 mostra queda de 0,0.
+a parte 1 mostra queda de 0,0.
 
 Por isso a parte 2 fixa a referência nas três safras ANTES DO EVENTO (a M(t)
 da primeira safra afetada, em cada município) e acompanha duas safras:
@@ -39,11 +46,11 @@ o rendimento de 2000 (ver etapa 2a).
 
 Como rodar
 ----------
-    python etapa5_avaliacao/5b_dano_por_evento.py   (~10 s)
+    python experimentos/e5_dano_shap_por_evento.py   (~10 s)
 
-Saídas: resultados/tabela3_dano_por_evento.csv,
-        resultados/tabela3b_dano_safras_seguintes.csv (parte 2),
-        resultados/5b_dano.json
+Saídas: resultados/e5_dano_shap_por_evento.csv,
+        resultados/e5_dano_shap_safras_seguintes.csv (parte 2),
+        resultados/e5_dano_shap.json
 """
 import sys
 from pathlib import Path
@@ -97,7 +104,7 @@ for safra, evento in EVENTOS:
         "Efeito dela": round(pior.min(), 1),
     })
 tabela = pd.DataFrame(linhas)
-tabela.to_csv(RESULTADOS / "tabela3_dano_por_evento.csv", index=False)
+tabela.to_csv(RESULTADOS / "e5_dano_shap_por_evento.csv", index=False)
 
 # ---------------------------------------------------------------------------
 # Parte 2: 1ª e 2ª safra afetada, com a referência fixa antes do evento
@@ -130,7 +137,7 @@ for evento, safras in SAFRAS_SEGUINTES:
             "Municípios com queda": int((queda < 0).sum()),
         })
 tabela_b = pd.DataFrame(linhas_b)
-tabela_b.to_csv(RESULTADOS / "tabela3b_dano_safras_seguintes.csv", index=False)
+tabela_b.to_csv(RESULTADOS / "e5_dano_shap_safras_seguintes.csv", index=False)
 
 clima_por_safra = por_safra.clima.mean()
 resumo = {
@@ -139,7 +146,7 @@ resumo = {
     "safras_com_inverno_mais_seco_SHAP": por_safra.Precip_Inverno_Risco_Geada_t1.mean().nsmallest(4).round(2).to_dict(),
     "safra_2003_SHAP_tmin_florada": round(float(por_safra.get_group(2003).Tmin_Abs_Florada_t1.mean()), 2),
 }
-salvar_json({"tabela": linhas, "safras_seguintes_referencia_fixa": linhas_b, **resumo}, "5b_dano.json")
+salvar_json({"tabela": linhas, "safras_seguintes_referencia_fixa": linhas_b, **resumo}, "e5_dano_shap.json")
 
 print(tabela.drop(columns=["Variável climática de maior efeito negativo"]).to_string(index=False))
 print("\nEfeito médio do clima numa safra qualquer (|sacas/ha|):", resumo["efeito_medio_absoluto_do_clima_em_uma_safra"])

@@ -8,7 +8,8 @@ Usa as estimativas fora da amostra salvas pela etapa 4a
 1. Viés por faixa de rendimento: o Random Forest "comprime" os extremos?
    (a média das árvores reduz a variância, mas puxa as estimativas para o
    centro: superestima safras muito baixas e subestima as muito altas)
-2. Erro por município e ganho sobre a baseline (Figura de mapa do TCC).
+2. Produtividade média e erro por município, com o ganho sobre a persistência
+   (Figura 4 do TCC).
 3. Observado x estimado, lado a lado com a baseline (figura de dispersão).
 4. Por que tirar 1991-2002: numa regressão linear do rendimento na tendência
    e na anomalia bienal, o sinal da anomalia muda. Numa cultura bienal ele
@@ -23,7 +24,7 @@ Como rodar
 
 Saídas: resultados/5c_diagnosticos.json, resultados/erro_por_municipio.csv,
         resultados/figuras/figura_obs_vs_estimado.png,
-        resultados/figuras/figura_mapa_erro_municipios.png
+        resultados/figuras/figura4_mapa_municipios.png
 """
 import sys
 import unicodedata
@@ -98,7 +99,6 @@ for nome, d in [("serie_completa", base), ("sem_1991_2002", base[~base[ANO].isin
     lr = LinearRegression().fit(d[controles], d[ALVO])
     coef[nome] = round(float(lr.coef_[1]), 2)
 saida["coeficiente_linear_da_anomalia_bienal"] = coef
-salvar_json(saida, "5c_diagnosticos.json")
 
 # Mapa do erro por município (opcional: precisa de geopandas) ------------------------------
 try:
@@ -118,17 +118,23 @@ try:
     # deslocamento dos rótulos (m) onde os nomes se sobrepõem às divisas
     desloca = {"Guaranesia": (-1500, 3500), "Guaxupe": (0, -3000), "Arceburgo": (800, -2500),
                "Juruaia": (0, 1500), "Nova Resende": (1500, 0)}
+    # (a) produtividade média real; (b) MAE do Random Forest (Cenário 4), com a redução frente à persistência
+    prod = obs.groupby(P[MUN]).mean()
+    prod.index = prod.index.map(sem_acento)
+    G["produtividade"] = G.chave.map(prod)
+    saida["produtividade_media_por_municipio"] = prod.round(1).to_dict()
     fig, axs = plt.subplots(1, 2, figsize=(8.6, 3.6))
-    for a, col, titulo, cmap in [(axs[0], "erro_rf", "MAE do Random Forest (sacas/ha)", "YlOrRd"),
-                                 (axs[1], "reducao_pct", "Redução do erro frente à persistência (%)", "RdYlGn")]:
+    for a, col, titulo, cmap in [(axs[0], "produtividade", "(a) Produtividade média (sacas/ha)", "YlGn"),
+                                 (axs[1], "erro_rf", "(b) MAE do Random Forest (sacas/ha)", "YlOrRd")]:
         F.plot(ax=a, color="#F2F2F2", edgecolor="#BBBBBB", lw=0.4)
-        extra = {"vmin": -50, "vmax": 50} if col == "reducao_pct" else {}
-        G.plot(ax=a, column=col, cmap=cmap, edgecolor="k", lw=0.5, legend=True,
-               legend_kwds={"shrink": 0.6}, **extra)
+        G.plot(ax=a, column=col, cmap=cmap, edgecolor="k", lw=0.5, legend=True, legend_kwds={"shrink": 0.6})
         for _, r in G.iterrows():
             p = r.geometry.representative_point()
             dx, dy = desloca.get(r.chave, (0, 0))
-            a.annotate(f"{r.NM_MUN}\n{r[col]:.1f}".replace(".", ",").replace("-", "\u2212"), (p.x + dx, p.y + dy),
+            rot = f"{r.NM_MUN}\n{r[col]:.1f}"
+            if col == "erro_rf":   # entre parênteses: redução do erro frente à persistência histórica
+                rot += f" ({r.reducao_pct:.0f}%)"
+            a.annotate(rot.replace(".", ",").replace("-", "\u2212"), (p.x + dx, p.y + dy),
                        ha="center", va="center", fontsize=6.6)
         x0, y0, x1, y1 = G.total_bounds
         a.set_xlim(x0 - 4000, x1 + 4000)
@@ -137,10 +143,11 @@ try:
         a.set_axis_off()
         fig.axes[-1].yaxis.set_major_formatter(virgula)
     plt.tight_layout()
-    plt.savefig(FIGURAS / "figura_mapa_erro_municipios.png", dpi=300, bbox_inches="tight", pad_inches=0.03)
+    plt.savefig(FIGURAS / "figura4_mapa_municipios.png", dpi=300, bbox_inches="tight", pad_inches=0.03)
     plt.close()
 except ImportError:
     print("[aviso] geopandas não instalado: mapa por município não gerado")
+salvar_json(saida, "5c_diagnosticos.json")
 
 print("Viés por faixa:", faixas)
 print(f"\nErro por município (RF errou menos em {saida['municipios_em_que_o_RF_errou_menos']} de 10):")

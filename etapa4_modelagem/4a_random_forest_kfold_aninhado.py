@@ -1,6 +1,6 @@
 """
-ETAPA 4a: Random Forest com validação cruzada aninhada (Tabelas 1 e 2 do TCC)
-============================================================================
+ETAPA 4a: Random Forest com validação cruzada aninhada (base dos cenários 1 a 4)
+================================================================================
 
 Pergunta
 --------
@@ -24,7 +24,7 @@ Comparações
 -----------
   * baselines: persistência histórica M(t) e o rendimento de dois anos antes
     Y(t-2), na mesma fase do ciclo bienal;
-  * modelos reduzidos (Tabela 2): sem NDVI, sem clima e só com os controles;
+  * modelos reduzidos: sem NDVI, sem clima e só com os controles;
   * teste de Wilcoxon pareado nos erros absolutos, por observação e por safra
     (média dos 10 municípios, porque eles compartilham o clima), com ajuste
     de Holm nas comparações dos modelos reduzidos;
@@ -36,8 +36,8 @@ Como rodar
 ----------
     python etapa4_modelagem/4a_random_forest_kfold_aninhado.py   (~2 min)
 
-Saídas em resultados/: 4a_kfold_aninhado.json, tabela1_desempenho.csv,
-tabela2_modelos_reduzidos.csv, predicoes_kfold.csv
+Saídas em resultados/: 4a_kfold_aninhado.json, 4a_desempenho.csv,
+4a_modelos_reduzidos.csv, predicoes_kfold.csv
 """
 import sys
 from pathlib import Path
@@ -96,7 +96,7 @@ for nome_conj, d in conjuntos.items():
     r["completo_safra_fora"] = metricas(y, p_sf)
     r["wilcoxon_safra_fora_vs_M"] = wilcoxon_obs_e_safra(np.abs(y - d.media_movel_3anos), np.abs(y - p_sf), d[ANO])
     print(f"[{nome_conj}] safra fora MAE {r['completo_safra_fora']['MAE']:.2f} sacas/ha")
-    # Modelos reduzidos x completo (Tabela 2), com Holm sobre os 6 p-valores
+    # Modelos reduzidos x completo, com Holm sobre os 6 p-valores
     brutos = []
     for nome in ["sem_ndvi", "sem_clima", "controles"]:
         r[f"wilcoxon_{nome}_vs_completo"] = wilcoxon_obs_e_safra(np.abs(y - pred[nome]), erro_rf, d[ANO])
@@ -123,7 +123,7 @@ rho = base[NDVI + CLIMA].corr(method="spearman").loc[NDVI, CLIMA]
 saida["spearman_max_abs_ndvi_clima"] = round(float(rho.abs().max().max()), 2)
 salvar_json(saida, "4a_kfold_aninhado.json")
 
-# Tabelas no formato do TCC -------------------------------------------------------
+# Tabelas resumidas (no TCC, as tabelas finais saem da etapa 5f) -----------------------
 t1 = []
 for nome_conj, r in saida.items():
     if not isinstance(r, dict) or "N" not in r:
@@ -139,7 +139,7 @@ for nome_conj, r in saida.items():
     t1.append([nome_conj, "Random Forest, safra inteira fora", sf["MAE"], sf["RMSE"], sf["R2"], "",
                f"p obs={r['wilcoxon_safra_fora_vs_M'][0]}, p safra={r['wilcoxon_safra_fora_vs_M'][1]}"])
 pd.DataFrame(t1, columns=["conjunto", "modelo", "MAE", "RMSE", "R2", "dp_MAE", "Wilcoxon_vs_M"]).to_csv(
-    RESULTADOS / "tabela1_desempenho.csv", index=False)
+    RESULTADOS / "4a_desempenho.csv", index=False)
 
 t2 = []
 for nome_conj in conjuntos:
@@ -150,7 +150,7 @@ for nome_conj in conjuntos:
         hb = r["holm_obs_safra"][2 * i:2 * i + 2]
         t2.append([nome_conj, nome, r[nome]["MAE"], f"{w[0]} [{hb[0]}]", f"{w[1]} [{hb[1]}]"])
 pd.DataFrame(t2, columns=["conjunto", "modelo", "MAE", "p_obs [Holm]", "p_safra [Holm]"]).to_csv(
-    RESULTADOS / "tabela2_modelos_reduzidos.csv", index=False)
+    RESULTADOS / "4a_modelos_reduzidos.csv", index=False)
 
 # Resumo ---------------------------------------------------------------------------
 for nome_conj in conjuntos:

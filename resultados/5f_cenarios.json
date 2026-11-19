@@ -1,0 +1,373 @@
+{
+ "serie_completa": {
+  "N": 350,
+  "persistencia_M": {
+   "MAE": 6.26,
+   "RMSE": 8.11,
+   "R2": 0.054
+  },
+  "C1": {
+   "rotulo": "Base",
+   "n_variaveis": 2,
+   "MAE": 4.54,
+   "RMSE": 6.26,
+   "R2": 0.438,
+   "dp_MAE_entre_partes": 0.4232249893745982,
+   "wilcoxon_vs_M": [
+    0.0,
+    0.0032,
+    24,
+    35
+   ]
+  },
+  "C2": {
+   "rotulo": "Base + clima",
+   "n_variaveis": 8,
+   "MAE": 4.71,
+   "RMSE": 6.44,
+   "R2": 0.405,
+   "dp_MAE_entre_partes": 0.5071804645742667,
+   "wilcoxon_vs_M": [
+    0.0,
+    0.0191,
+    23,
+    35
+   ],
+   "wilcoxon_vs_C1": [
+    0.2641,
+    0.3507,
+    16,
+    35
+   ],
+   "holm_vs_C1": [
+    1.0,
+    1.0
+   ]
+  },
+  "C3": {
+   "rotulo": "Base + NDVI",
+   "n_variaveis": 6,
+   "MAE": 4.76,
+   "RMSE": 6.38,
+   "R2": 0.415,
+   "dp_MAE_entre_partes": 0.280673067401094,
+   "wilcoxon_vs_M": [
+    0.0,
+    0.0287,
+    21,
+    35
+   ],
+   "wilcoxon_vs_C1": [
+    0.1816,
+    0.3341,
+    18,
+    35
+   ],
+   "holm_vs_C1": [
+    1.0,
+    1.0
+   ]
+  },
+  "C4": {
+   "rotulo": "Completo",
+   "n_variaveis": 12,
+   "MAE": 4.69,
+   "RMSE": 6.38,
+   "R2": 0.415,
+   "dp_MAE_entre_partes": 0.45298649648509876,
+   "wilcoxon_vs_M": [
+    0.0,
+    0.0144,
+    23,
+    35
+   ],
+   "wilcoxon_vs_C1": [
+    0.4413,
+    0.2947,
+    15,
+    35
+   ],
+   "holm_vs_C1": [
+    1.0,
+    1.0
+   ]
+  },
+  "C4_safra_inteira_fora": {
+   "MAE": 6.05,
+   "RMSE": 7.86,
+   "R2": 0.113,
+   "wilcoxon_vs_M": [
+    0.3059,
+    0.728,
+    17,
+    35
+   ]
+  }
+ },
+ "sem_1991_2002": {
+  "N": 230,
+  "persistencia_M": {
+   "MAE": 6.2,
+   "RMSE": 7.79,
+   "R2": 0.104
+  },
+  "C1": {
+   "rotulo": "Base",
+   "n_variaveis": 2,
+   "MAE": 4.18,
+   "RMSE": 5.4,
+   "R2": 0.57,
+   "dp_MAE_entre_partes": 0.2776042894106776,
+   "wilcoxon_vs_M": [
+    0.0,
+    0.0091,
+    15,
+    23
+   ]
+  },
+  "C2": {
+   "rotulo": "Base + clima",
+   "n_variaveis": 8,
+   "MAE": 4.24,
+   "RMSE": 5.48,
+   "R2": 0.556,
+   "dp_MAE_entre_partes": 0.3396295862326726,
+   "wilcoxon_vs_M": [
+    0.0,
+    0.0301,
+    15,
+    23
+   ],
+   "wilcoxon_vs_C1": [
+    0.9043,
+    0.9168,
+    12,
+    23
+   ],
+   "holm_vs_C1": [
+    1.0,
+    1.0
+   ]
+  },
+  "C3": {
+   "rotulo": "Base + NDVI",
+   "n_variaveis": 6,
+   "MAE": 4.34,
+   "RMSE": 5.55,
+   "R2": 0.545,
+   "dp_MAE_entre_partes": 0.4943535649577262,
+   "wilcoxon_vs_M": [
+    0.0,
+    0.0749,
+    13,
+    23
+   ],
+   "wilcoxon_vs_C1": [
+    0.5139,
+    0.2467,
+    9,
+    23
+   ],
+   "holm_vs_C1": [
+    1.0,
+    1.0
+   ]
+  },
+  "C4": {
+   "rotulo": "Completo",
+   "n_variaveis": 12,
+   "MAE": 4.19,
+   "RMSE": 5.4,
+   "R2": 0.569,
+   "dp_MAE_entre_partes": 0.40154082824480614,
+   "wilcoxon_vs_M": [
+    0.0,
+    0.0301,
+    15,
+    23
+   ],
+   "wilcoxon_vs_C1": [
+    0.8095,
+    0.709,
+    12,
+    23
+   ],
+   "holm_vs_C1": [
+    1.0,
+    1.0
+   ]
+  },
+  "C4_safra_inteira_fora": {
+   "MAE": 6.08,
+   "RMSE": 7.47,
+   "R2": 0.175,
+   "wilcoxon_vs_M": [
+    0.9807,
+    0.709,
+    14,
+    23
+   ]
+  }
+ },
+ "C5": {
+  "rotulo": "Previsor de seca",
+  "N": 40,
+  "safras": [
+   2014,
+   2015,
+   2016,
+   2017
+  ],
+  "MAE": 4.16,
+  "MAE_persistencia": 4.21,
+  "RMSE": 5.49
+ },
+ "C6": {
+  "rotulo": "Previsor de geada",
+  "N": 70,
+  "safras": [
+   1994,
+   1995,
+   2000,
+   2001,
+   2021,
+   2022,
+   2023
+  ],
+  "MAE": 6.9,
+  "MAE_persistencia": 5.91,
+  "RMSE": 8.95
+ },
+ "safras_de_evento": [
+  {
+   "Safra": 1995,
+   "Evento": "Geada 1994, 1ª safra",
+   "Real": 13.1,
+   "Queda": -7.22,
+   "Persistência": 20.32,
+   "C1": 16.92,
+   "C2": 17.97,
+   "C3": 15.63,
+   "C4": 17.35,
+   "C5": null,
+   "C6": 16.95,
+   "MAE_por_cenario": {
+    "C1": 5.16,
+    "C2": 6.59,
+    "C3": 3.81,
+    "C4": 5.73
+   }
+  },
+  {
+   "Safra": 1996,
+   "Evento": "Geada 1994, 2ª safra",
+   "Real": 19.93,
+   "Queda": -0.39,
+   "Persistência": 18.1,
+   "C1": 18.89,
+   "C2": 20.83,
+   "C3": 19.61,
+   "C4": 20.88,
+   "C5": null,
+   "C6": null,
+   "MAE_por_cenario": {
+    "C1": 3.21,
+    "C2": 4.11,
+    "C3": 3.81,
+    "C4": 4.19
+   }
+  },
+  {
+   "Safra": 2014,
+   "Evento": "Seca 2014, enchimento",
+   "Real": 26.92,
+   "Queda": 1.35,
+   "Persistência": 25.56,
+   "C1": 28.4,
+   "C2": 28.05,
+   "C3": 28.92,
+   "C4": 28.29,
+   "C5": 24.12,
+   "C6": null,
+   "MAE_por_cenario": {
+    "C1": 2.88,
+    "C2": 2.31,
+    "C3": 2.79,
+    "C4": 2.23
+   }
+  },
+  {
+   "Safra": 2015,
+   "Evento": "Seca 2014, florada",
+   "Real": 26.62,
+   "Queda": 1.05,
+   "Persistência": 27.52,
+   "C1": 28.03,
+   "C2": 27.76,
+   "C3": 27.98,
+   "C4": 28.03,
+   "C5": 27.62,
+   "C6": null,
+   "MAE_por_cenario": {
+    "C1": 3.99,
+    "C2": 4.13,
+    "C3": 3.74,
+    "C4": 4.71
+   }
+  },
+  {
+   "Safra": 2022,
+   "Evento": "Geada 2021, 1ª safra",
+   "Real": 20.5,
+   "Queda": -6.77,
+   "Persistência": 27.27,
+   "C1": 21.48,
+   "C2": 21.19,
+   "C3": 21.58,
+   "C4": 21.4,
+   "C5": null,
+   "C6": 26.06,
+   "MAE_por_cenario": {
+    "C1": 4.01,
+    "C2": 4.18,
+    "C3": 3.48,
+    "C4": 4.04
+   }
+  },
+  {
+   "Safra": 2023,
+   "Evento": "Geada 2021, 2ª safra",
+   "Real": 24.57,
+   "Queda": -2.69,
+   "Persistência": 24.55,
+   "C1": 23.42,
+   "C2": 25.73,
+   "C3": 24.65,
+   "C4": 25.02,
+   "C5": null,
+   "C6": 27.91,
+   "MAE_por_cenario": {
+    "C1": 4.43,
+    "C2": 4.03,
+    "C3": 3.7,
+    "C4": 3.39
+   }
+  }
+ ],
+ "clima_variacao_entre_safras_pct": {
+  "Precip_Florada_t1": 86.7,
+  "Tmin_Abs_Florada_t1": 92.1,
+  "Precip_Enchimento_Graos": 78.7,
+  "Tmin_Abs_Enchimento_Graos": 85.2,
+  "Precip_Inverno_Risco_Geada_t1": 96.6,
+  "Tmin_Abs_Inverno_Risco_Geada_t1": 90.5
+ },
+ "R2_por_cenario": {
+  "C1": 0.438,
+  "C2": 0.405,
+  "C3": 0.415,
+  "C4": 0.415,
+  "C5": -0.206,
+  "C6": -0.597
+ }
+}

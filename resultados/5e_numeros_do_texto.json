@@ -1,39 +1,8 @@
 {
- "chuva_inverno_SHAP": {
-  "abaixo_de_30": -2.36,
-  "30_a_60": 0.59,
-  "acima_de_90": 0.08,
-  "mediana_mm": 65.0,
-  "safras_abaixo_de_30": [
-   2011,
-   2021,
-   2022
-  ]
- },
- "tmin_florada": {
-  "safra_de_maior_efeito_negativo": 2003,
-  "efeito_medio_nessa_safra": -4.26,
-  "minima_media_nessa_safra_C": 7.0,
-  "fracao_do_efeito_negativo_nessa_safra": 0.41
- },
  "hiperparametros_modelo_final": {
   "max_depth": 5,
   "min_samples_split": 5,
   "n_estimators": 150
- },
- "sentido_SHAP_spearman": {
-  "anomalia_bienal_t_1": -0.33,
-  "tendencia_temporal": 0.68,
-  "Precip_Florada_t1": 0.21,
-  "Tmin_Abs_Florada_t1": 0.93,
-  "Precip_Enchimento_Graos": -0.66,
-  "Tmin_Abs_Enchimento_Graos": -0.72,
-  "Precip_Inverno_Risco_Geada_t1": -0.2,
-  "Tmin_Abs_Inverno_Risco_Geada_t1": -0.59,
-  "NDVI_Vigor_Maximo": -0.67,
-  "NDVI_Estresse_Maximo": 0.53,
-  "NDVI_Florada": 0.9,
-  "NDVI_Amplitude": -0.73
  },
  "clima_resumo": {
   "chuva_florada_media_mm": 441,

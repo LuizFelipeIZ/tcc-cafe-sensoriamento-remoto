@@ -10,6 +10,7 @@ Esta pasta guarda os testes que ajudaram a chegar ao desenho final do TCC. Eles 
 | `e2_kfold_por_safra.py` | O que o K-Fold sorteado mede de verdade? | Só a tendência já erra 4,33, e a média dos vizinhos da mesma safra erra 4,34. Com a safra inteira fora do treino e hiperparâmetros fixos, o RF erra 6,52, mais que a persistência (6,26); com a busca em grade da Tabela 1, 6,05, sem diferença significativa dela. Ou seja, o K-Fold mede a capacidade de **completar a série**, não de prever o futuro. |
 | `e3_residualizacao.py` | Tirando tendência e bienalidade por regressão, o clima explica o que sobra? | Clima e NDVI explicam cerca de 31% do resíduo (38% sem 1991-2002), com a florada no topo. Mas a combinação linear + RF erra mais (4,87) que o RF só com controles (4,54). |
 | `e4_deficit_hidrico_no_modelo.py` | Vale incluir o balanço hídrico no modelo principal? | No modelo completo, 4,69 → 4,55 (p = 0,012 por safra), mas sem superar o modelo só com controles (4,54); nos controles, o déficit piora o erro (4,73). Ficou só no previsor de seca. |
+| `e5_dano_shap_por_evento.py` | Quanto do dano de cada evento o SHAP atribui ao clima e ao NDVI? | Na 1ª safra após a geada de 2021 (2022), −2,0 sacas/ha ao clima e −1,7 ao NDVI, de uma queda de 6,8. Saiu do TCC: o SHAP atribui parte da estimativa ao clima mesmo quando retirar o clima não muda o erro (Cenário 2 × Cenário 1, etapa 5f), o que confundia a leitura. |
 
 Os resultados ficam em `resultados/e*.json`.
 

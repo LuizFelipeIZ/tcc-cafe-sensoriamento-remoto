@@ -3,7 +3,8 @@ ETAPA 5d: figuras de apoio do texto (fluxograma, área de estudo e séries)
 ========================================================================
 
 Gera as figuras que não dependem do modelo:
-  * Figura 1: fluxograma das etapas do trabalho
+  * Figura 1: fluxograma do Material e Métodos (dados, máscara, processamento,
+    base, cenários e avaliação)
   * Figura 2: localização dos dez municípios estudados
   * série do NDVI harmonizado (média dos 10 municípios, escala do Landsat 8),
     com as safras de evento destacadas
@@ -32,70 +33,103 @@ plt.rcParams.update({"font.family": "serif", "font.size": 9})
 ESCURO, CINZA_CLARO, VERDE_CLARO, AZUL_CLARO = "#0B3D2A", "#EEEEEE", "#DBF3EC", "#DCE9F3"
 
 # ---------------------------------------------------------------------------
-# Figura 1: fluxograma
+# Figura 1: fluxograma, na ordem do Material e Métodos (seção de cada etapa)
 # ---------------------------------------------------------------------------
-fig, ax = plt.subplots(figsize=(10, 8.4))
-ax.set_xlim(0, 10)
-ax.set_ylim(0, 8.4)
-ax.axis("off")
-X0, W = 1.75, 1.6
+def figura1_fluxograma():
+    """Seis linhas: dados, máscara de café, processamento, base, cenários e avaliação."""
+    ESCURO, CINZA, AZUL, VERDE, BRANCO = "#1F4E3D", "#EEEEEE", "#E3EBF3", "#DCEEE8", "#FFFFFF"
+    FS, FS_ROT = 9, 9.5
+    W_FIG, H_FIG = 7.6, 4.9
+    fig, ax = plt.subplots(figsize=(W_FIG, H_FIG))
+    ax.set_xlim(0, W_FIG)
+    ax.set_ylim(0, H_FIG)
+    ax.axis("off")
+
+    X0, X1 = 1.25, W_FIG - 0.02          # área das caixas
+    GAP = 0.12
+    COL = (X1 - X0 - 2 * GAP) / 3        # largura de uma coluna (3 colunas)
+    H = 0.60                             # altura das caixas
+    Y = [4.28, 3.50, 2.62, 1.86, 0.98, 0.08]   # base de cada linha
+    HS = [H, 0.52, 0.66, 0.46, 0.72, 0.70]
 
 
-def cx(i):
-    return X0 + i * (W + 0.05)
+    def xcol(i):
+        return X0 + i * (COL + GAP)
 
 
-def caixa(c0, c1, y, texto, cor=CINZA_CLARO, negrito=False, h=1.0):
-    x = cx(c0)
-    w = cx(c1) + W - x
-    ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0,rounding_size=0.08", fc=cor, ec=ESCURO, lw=1.3))
-    ax.text(x + w / 2, y + h / 2, texto, ha="center", va="center", fontsize=9.6,
-            fontweight="bold" if negrito else "normal", linespacing=1.25)
-    return (x + w / 2, y, y + h)
+    def caixa(x, y, w, h, texto, cor, negrito=False, fs=FS):
+        ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0,rounding_size=0.05", fc=cor, ec=ESCURO, lw=0.9))
+        ax.text(x + w / 2, y + h / 2, texto, ha="center", va="center", fontsize=fs, linespacing=1.12,
+                fontweight="bold" if negrito else "normal")
 
 
-def seta(x0, y0, x1, y1):
-    ax.annotate("", (x1, y1), (x0, y0), arrowprops=dict(arrowstyle="-|>", color=ESCURO, lw=1.3, mutation_scale=11))
+    def seta(x, y0, y1):
+        ax.annotate("", (x, y1), (x, y0), arrowprops=dict(arrowstyle="-|>", color=ESCURO, lw=0.9, mutation_scale=8))
 
 
-Y = [7.2, 5.65, 4.1, 2.55, 1.0]
-for y, rotulo in zip(Y, ["Dados", "Pré-\nprocessamento", "Variáveis\n(N = 350)", "Modelagem", "Avaliação e\ninterpretação"]):
-    ax.text(0.05, y + 0.5, rotulo, va="center", fontsize=10.5, fontweight="bold", color=ESCURO)
-d = [caixa(i, i, Y[0], t) for i, t in enumerate([
-    "IBGE/SIDRA\nTabela 1613\n1988-2023", "ERA5-Land\nTmin e chuva\ndiárias", "Landsat 5, 7 e 8\nreflectância\n(30 m)",
-    "MapBiomas\nColeção 9\nclasse 46", "Open-Meteo\nERA5, T e chuva\n(sede)"])]
-p0 = caixa(0, 0, Y[1], "Auditoria da série\nkg/ha → sacas/ha\nrepetições 1991-2002")
-p1 = caixa(1, 1, Y[1], "Janelas fenológicas\nno ano agrícola\n(área cafeeira)")
-p2 = caixa(2, 3, Y[1], "Máscaras de café e de nuvem\ncompósitos por safra (jul t−1 a jun t)\ncalibração entre sensores (RMA)")
-p4 = caixa(4, 4, Y[1], "Balanço hídrico\nThornthwaite e\nMather")
-for a, b in [(d[0], p0), (d[1], p1), (d[4], p4)]:
-    seta(a[0], a[1], b[0], b[2] + 0.02)
-seta(d[2][0], d[2][1], d[2][0], p2[2] + 0.02)
-seta(d[3][0], d[3][1], d[3][0], p2[2] + 0.02)
-seta(d[3][0] - 0.3, d[3][1], p1[0] + 0.4, p1[2] + 0.02)
-v0 = caixa(0, 0, Y[2], "Tendência e\nanomalia bienal", VERDE_CLARO)
-v1 = caixa(1, 1, Y[2], "Clima: florada e\ninverno (t−1),\nenchimento", VERDE_CLARO)
-v2 = caixa(2, 3, Y[2], "NDVI: vigor, estresse,\nflorada e amplitude", AZUL_CLARO)
-v4 = caixa(4, 4, Y[2], "Déficit hídrico\n(previsor de seca)", VERDE_CLARO)
-for a, b in [(p0, v0), (p1, v1), (p2, v2), (p4, v4)]:
-    seta(a[0], a[1], b[0], b[2] + 0.02)
-m0 = caixa(0, 2, Y[3], "Random Forest\nbusca em grade + K-Fold aninhado\n× baselines M(t) e Y(t−2)", VERDE_CLARO, True)
-m1 = caixa(3, 4, Y[3], "Previsão intra-safra\njanela expansiva (seca e geada)\n× baseline e só controles", VERDE_CLARO, True)
-seta(v0[0], v0[1], v0[0], m0[2] + 0.02)
-seta(v1[0], v1[1], v1[0], m0[2] + 0.02)
-seta(v2[0] - 0.6, v2[1], m0[0] + 0.9, m0[2] + 0.02)
-seta(v4[0], v4[1], v4[0], m1[2] + 0.02)
-seta(v1[0] + 0.5, v1[1], m1[0] - 0.4, m1[2] + 0.02)
-e0 = caixa(0, 0, Y[4], "MAE, RMSE, R²\nWilcoxon por\nobservação e safra")
-e1 = caixa(1, 2, Y[4], "Modelos com e sem clima\ne com e sem NDVI (Holm);\nsem 1991-2002")
-e2 = caixa(3, 4, Y[4], "Atribuição do dano climático\n(MDI e SHAP por fase);\nerros por município; P10-P90")
-seta(m0[0] - 1.2, m0[1], e0[0], e0[2] + 0.02)
-seta(m0[0], m0[1], e1[0], e1[2] + 0.02)
-seta(m0[0] + 1.2, m0[1], e2[0] - 0.6, e2[2] + 0.02)
-seta(m1[0], m1[1], e2[0] + 0.3, e2[2] + 0.02)
-plt.tight_layout()
-plt.savefig(FIGURAS / "figura1_fluxograma.png", dpi=250, bbox_inches="tight", pad_inches=0.05)
-plt.close()
+    rotulos = ["Dados\n(2.2)", "Máscara de\ncafé (2.4)", "Processa-\nmento (2.4)", "Base de\ndados", "Cenários\n(2.5)",
+               "Avaliação\n(2.6)"]
+    for y, h, r in zip(Y, HS, rotulos):
+        ax.text(0.02, y + h / 2, r, va="center", fontsize=FS_ROT, fontweight="bold", color=ESCURO, linespacing=1.05)
+
+    # Dados
+    dados = ["IBGE/SIDRA, Tabela 1613\nprodutividade (kg/ha)\n1988-2023",
+             "ERA5-Land (≈ 11 km):\nchuva e Tmín diárias;\nOpen-Meteo (sede)",
+             "Landsat 5, 7 e 8\nreflectância de superfície\n(30 m)"]
+    for i, t in enumerate(dados):
+        caixa(xcol(i), Y[0], COL, HS[0], t, CINZA)
+    # Máscara (colunas 2 e 3)
+    caixa(xcol(1), Y[1], 2 * COL + GAP, HS[1],
+          "MapBiomas, Coleção 9 (30 m): pixels da classe café\nNDVI: máscara do ano da safra  ·  clima: união de cinco anos",
+          AZUL)
+    # Processamento
+    proc = ["kg/ha → sacas/ha; valores\nrepetidos; tendência T(t)\ne anomalia bienal A(t)",
+            "chuva e Tmín por fase:\ninverno, florada e enchimento;\nbalanço hídrico",
+            "compósitos P90, P10 e\nNDVI na florada; ajuste\nentre sensores"]
+    for i, t in enumerate(proc):
+        caixa(xcol(i), Y[2], COL, HS[2], t, BRANCO)
+    # Variáveis e modelo (largura total)
+    caixa(xcol(0), Y[3], X1 - X0, HS[3],
+          "N = 350 (10 municípios × 35 safras): produtividade (sacas/ha) e variáveis\n"
+          "independentes: 2 controles, 6 de clima, 4 de NDVI e as dos previsores (Quadro 1)", VERDE)
+    # Cenários (duas caixas)
+    W2 = (X1 - X0 - GAP) / 2
+    cen = [("Cenários 1 a 4: validação cruzada aninhada", "1 Base  ·  2 Base + clima\n3 Base + NDVI  ·  4 Completo"),
+           ("Cenários 5 e 6: janela expansiva", "5 Previsor de seca\n6 Previsor de geada")]
+    for i, (tit, t) in enumerate(cen):
+        x = X0 + i * (W2 + GAP)
+        caixa(x, Y[4], W2, HS[4], "", VERDE)
+        ax.text(x + W2 / 2, Y[4] + HS[4] - 0.13, tit, ha="center", va="center", fontsize=FS, fontweight="bold", color=ESCURO)
+        ax.text(x + W2 / 2, Y[4] + 0.25, t, ha="center", va="center", fontsize=FS - 0.5, linespacing=1.15)
+    # Avaliação (3 caixas)
+    aval = [("Desempenho", "MAE, RMSE e R²;\n× persistência M(t) e Y(t−2);\nWilcoxon e Holm"),
+            ("Importância", "MDI por variável\ne por fase do clima"),
+            ("Safras de evento", "produtividade real ×\nestimada após seca\ne geada")]
+    for i, (tit, t) in enumerate(aval):
+        x = xcol(i)
+        caixa(x, Y[5], COL, HS[5], "", CINZA)
+        ax.text(x + COL / 2, Y[5] + HS[5] - 0.11, tit, ha="center", va="center", fontsize=FS, fontweight="bold",
+                color=ESCURO)
+        ax.text(x + COL / 2, Y[5] + (HS[5] - 0.2) / 2, t, ha="center", va="center", fontsize=FS - 0.5, linespacing=1.1)
+
+    # Setas verticais, sem cruzamentos
+    for i in (1, 2):
+        seta(xcol(i) + COL / 2, Y[0], Y[1] + HS[1] + 0.01)
+        seta(xcol(i) + COL / 2, Y[1], Y[2] + HS[2] + 0.01)
+    seta(xcol(0) + COL / 2, Y[0], Y[2] + HS[2] + 0.01)
+    for i in range(3):
+        seta(xcol(i) + COL / 2, Y[2], Y[3] + HS[3] + 0.01)
+    for i in range(2):
+        seta(X0 + i * (W2 + GAP) + W2 / 2, Y[3], Y[4] + HS[4] + 0.01)
+    for i in range(3):
+        seta(xcol(i) + COL / 2, Y[4], Y[5] + HS[5] + 0.01)
+    plt.savefig(FIGURAS / "figura1_fluxograma.png", dpi=300, bbox_inches="tight", pad_inches=0.03)
+    plt.close()
+
+
+with plt.rc_context({"font.serif": ["Times New Roman", "Liberation Serif", "DejaVu Serif"]}):
+    figura1_fluxograma()
+
 
 # ---------------------------------------------------------------------------
 # Figura 2: área de estudo (precisa de geopandas)

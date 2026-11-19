@@ -4,7 +4,7 @@ pandas==3.0.5
 numpy==2.5.3
 scipy==1.18.1
 scikit-learn==1.9.1
-shap==0.54.1
+shap==0.54.1        # só para experimentos/e5_dano_shap_por_evento.py
 matplotlib==3.11.2
 openpyxl==3.1.5
 
