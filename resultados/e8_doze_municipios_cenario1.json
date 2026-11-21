@@ -1,0 +1,74 @@
+{
+ "10_municipios": {
+  "N": 350,
+  "repetidos": 42,
+  "media_real_sc": 22.51,
+  "persistencia": {
+   "MAE": 6.26,
+   "RMSE": 8.11,
+   "R2": 0.054
+  },
+  "C1_kfold": {
+   "MAE": 4.54,
+   "RMSE": 6.26,
+   "R2": 0.438,
+   "wilcoxon_vs_M": [
+    0.0,
+    0.0032,
+    24,
+    35
+   ]
+  },
+  "C1_safra_fora": {
+   "MAE": 6.21,
+   "RMSE": 8.01,
+   "R2": 0.078,
+   "wilcoxon_vs_M": [
+    0.7936,
+    0.8907,
+    16,
+    35
+   ]
+  }
+ },
+ "12_municipios": {
+  "N": 420,
+  "repetidos": 45,
+  "media_real_sc": 22.56,
+  "persistencia": {
+   "MAE": 6.36,
+   "RMSE": 8.19,
+   "R2": 0.006
+  },
+  "C1_kfold": {
+   "MAE": 4.49,
+   "RMSE": 6.12,
+   "R2": 0.445,
+   "wilcoxon_vs_M": [
+    0.0,
+    0.0012,
+    26,
+    35
+   ]
+  },
+  "C1_safra_fora": {
+   "MAE": 6.3,
+   "RMSE": 8.07,
+   "R2": 0.033,
+   "wilcoxon_vs_M": [
+    0.9079,
+    0.9806,
+    18,
+    35
+   ]
+  },
+  "Monte Santo de Minas": {
+   "MAE_C1_kfold": 4.41,
+   "MAE_persistencia": 7.2
+  },
+  "Sao Sebastiao do Paraiso": {
+   "MAE_C1_kfold": 4.47,
+   "MAE_persistencia": 6.54
+  }
+ }
+}

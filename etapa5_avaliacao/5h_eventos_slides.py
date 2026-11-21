@@ -106,7 +106,6 @@ def figura_cenario(c):
         for x, (_, r) in zip(xs, e.iterrows()):
             ax.plot([x, x], [r.real, r.estimada], color=ACIMA if r.estimada > r.real else ABAIXO, lw=6,
                     alpha=0.9, solid_capstyle="butt", zorder=2)
-        ax.plot(xs, e.persistencia, ls="none", marker="o", ms=19, mfc="none", mec=APAGADO, mew=2.6, zorder=3)
         ax.plot(xs, e.real, ls="none", marker="o", ms=19, color=CREME, zorder=4)
         ax.plot(xs, e.estimada, ls="none", marker="o", ms=13, color=cor, mec=FUNDO, mew=1.6, zorder=5)
         ax.set_xlim(-0.6, max(pos.values()) + 0.6)
@@ -128,23 +127,23 @@ def figura_cenario(c):
                                                   boxstyle="round,pad=0,rounding_size=0.012", transform=fig.transFigure,
                                                   fill=False, ec=VERMELHO, lw=3.2, zorder=10))
         m = MAE[c][rot]
-        nota = (f"MAE {v2(m['MAE'])} · persistência {v2(m['MAE_persistencia'])}" if c in prev
+        nota = (f"MAE {v2(m['MAE'])} nas safras de teste" if c in prev
                 else f"MAE {v2(m['MAE'])} na série · {v2(m['MAE_eventos'])} após os eventos")
         fig.text(x0 / W, 4.45 / H, rot, fontsize=21, fontweight="bold", color=CREME, va="center")
         fig.text((x0 + larg) / W, 4.45 / H, nota, fontsize=14.5, color=BEGE, va="center", ha="right")
         tr = blended_transform_factory(ax.transData, fig.transFigure)
         for x, (_, r) in zip(xs, e.iterrows()):
-            perto = abs(r.estimada - r.real) < abs(r.persistencia - r.real)
             fig.text(x, y_lin[0] / H, v(r.real), transform=tr, ha="center", va="center", fontsize=17,
                      color=CREME, fontweight="semibold")
             fig.text(x, y_lin[1] / H, v(r.estimada), transform=tr, ha="center", va="center", fontsize=17,
-                     color=cor, fontweight="bold" if perto else "normal")
-            fig.text(x, y_lin[2] / H, v(r.persistencia), transform=tr, ha="center", va="center", fontsize=17,
-                     color=APAGADO)
+                     color=cor, fontweight="bold")
+            dif = round(r.estimada, 1) - round(r.real, 1)
+            fig.text(x, y_lin[2] / H, ("+" if dif > 0 else "−" if dif < 0 else "") + v(abs(dif)), transform=tr,
+                     ha="center", va="center", fontsize=17, color=ACIMA if dif > 0 else ABAIXO if dif < 0 else BEGE)
     # rótulos das linhas da tabela, que servem de legenda
     for y, (txt, estilo) in zip(y_lin, [("Real (IBGE)", dict(color=CREME, mfc=CREME, mec=CREME)),
                                         (NOME[c], dict(color=cor, mfc=cor, mec=cor)),
-                                        ("Persistência", dict(color=APAGADO, mfc="none", mec=APAGADO))]):
+                                        ("Erro", dict(color=BEGE, mfc="none", mec="none"))]):
         cor_txt = estilo.pop("color")
         fig.lines.append(plt.Line2D([0.14 / W], [y / H], transform=fig.transFigure, marker="o", ms=14,
                                     mew=2.2, ls="none", **estilo))
@@ -157,9 +156,8 @@ def figura_cenario(c):
                                     color=c_, lw=6))
         fig.text((xl + 0.40) / W, 4.95 / H, txt, fontsize=14, color=BEGE, va="center")
         xl += 3.2
-    fig.text(xl / W, 4.95 / H, "negrito: mais perto da real que a persistência", fontsize=14, color=BEGE,
-             va="center")
-    xl += 5.1
+    fig.text(xl / W, 4.95 / H, "erro: estimada − real, em sacas/ha", fontsize=14, color=BEGE, va="center")
+    xl += 4.0
     fig.patches.append(FancyBboxPatch((xl / W, 4.85 / H), 0.30 / W, 0.20 / H, boxstyle="round,pad=0,rounding_size=0.004",
                                       transform=fig.transFigure, fill=False, ec=VERMELHO, lw=2.6))
     fig.text((xl + 0.40) / W, 4.95 / H, "safra discutida", fontsize=14, color=BEGE, va="center")

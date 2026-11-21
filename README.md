@@ -3,8 +3,9 @@
 Trabalho de Conclusão de Curso em **Engenharia Agronômica**, Instituto Federal do Sul de Minas Gerais (IFSULDEMINAS), Campus Muzambinho.
 
 **Autor:** Luiz Felipe Viana Dias da Silva
-**Orientador:** Prof. Dr. Allan Arantes Pereira
-**Defesa:** 25 de novembro de 2026
+**Orientador:** Prof. DSc. Allan Arantes Pereira (IFSULDEMINAS, Campus Muzambinho)
+**Banca:** Prof. DSc. Lucas Eduardo de Oliveira Aparecido (IFSULDEMINAS, Campus Muzambinho) e MSc. Eduarda Goulart (Universidade Federal de Lavras)
+**Defesa:** 25 de novembro de 2026, 15h, Auditório da Agronomia, IFSULDEMINAS, Campus Muzambinho
 
 Este repositório reúne os dados, os códigos e os resultados do TCC, na ordem em que o trabalho foi feito: coleta dos dados, pré-processamento, montagem da base, modelagem e avaliação. Todos os números das tabelas do texto são reproduzidos pelos scripts daqui.
 
@@ -54,7 +55,7 @@ Principais resultados:
 
 ## 2. Área de estudo
 
-Dez dos 14 municípios da microrregião de São Sebastião do Paraíso, no Sul de Minas Gerais: **Arceburgo, Cabo Verde, Guaranésia, Guaxupé, Itamogi, Jacuí, Juruaia, Monte Belo, Muzambinho e Nova Resende**, os que têm a série de produtividade de café completa na PAM de 1988 a 2023. Somaram 59,7 mil ha de café colhidos em 2023 (IBGE). Clima Cwa e Cwb, com chuvas de outubro a março e inverno seco, quando ocorrem as geadas.
+Dez dos 14 municípios da microrregião de São Sebastião do Paraíso, no Sul de Minas Gerais: **Arceburgo, Cabo Verde, Guaranésia, Guaxupé, Itamogi, Jacuí, Juruaia, Monte Belo, Muzambinho e Nova Resende**, todos com a série de produtividade de café completa na PAM de 1988 a 2023. Os outros quatro (Monte Santo de Minas, São Pedro da União, São Sebastião do Paraíso e São Tomás de Aquino) também têm a série completa na consulta de novembro de 2026; o Cenário 1 foi repetido com São Sebastião do Paraíso e Monte Santo de Minas incluídos (experimento `e8`, Seção 9), com a mesma conclusão. Os dez municípios somaram 59,7 mil ha de café colhidos em 2023 (IBGE). Clima Cwa e Cwb, com chuvas de outubro a março e inverno seco, quando ocorrem as geadas.
 
 A **unidade de observação** é o município em cada safra, porque a produção vem do levantamento municipal do IBGE.
 
@@ -242,10 +243,8 @@ O modelo **nunca** usa o rendimento da safra que estima. A média móvel é calc
 * **5f.** Os seis cenários: MAE, RMSE e R² dos cenários 1 a 4; Wilcoxon de cada cenário contra a persistência e dos cenários 2, 3 e 4 contra o Cenário 1, com ajuste de Holm sobre as 6 comparações (3 cenários × observação e safra); produtividade real × estimada nas safras de evento; R² dos previsores.
 * **5g.** Uma figura por cenário com a produtividade real (IBGE) e a estimada ao longo da série em Guaxupé, Muzambinho, Nova Resende e Cabo Verde, com a persistência histórica, as safras após geada ou seca sombreadas e o MAE do cenário em cada município. A faixa entre a real e a estimada é o erro (laranja: superestimativa; azul: subestimativa). Duas versões: 1 × 4 painéis para o texto e 2 × 2, com os eventos rotulados, para os slides (`resultados/figuras/apresentacao/`).
 
-* **5h.** Figuras da apresentação: real, estimada e persistência nas safras de seca e de geada em Nova Resende e Cabo Verde, com os valores em tabela, e o resumo das safras de evento (Tabela 3) em gráfico.
+* **5h.** Figuras da apresentação: produtividade real e estimada nas safras de seca e de geada em Nova Resende e Cabo Verde, com os valores e o erro (estimada − real) em tabela, um quadro vermelho nas safras discutidas e o resumo das safras de evento (Tabela 3) em gráfico.
 * **5i.** Robustez da comparação entre os cenários 1 a 4: (1) **safra inteira fora** do treino para os quatro cenários, com Wilcoxon contra a persistência e contra o Cenário 1 (Holm sobre 6 testes); (2) **intervalo de confiança de 95%** da diferença de MAE contra o Cenário 1, por bootstrap de safras (10.000 repetições); (3) K-Fold aninhado com **sorteio de variáveis** (`max_features = "sqrt"`), como no Random Forest de Breiman (2001). O 4b também registra, à parte, o previsor de seca na safra de 2021 (florada de 2020, maior déficit da série).
-
-* **e6 e e7 (reserva para a banca).** e6: os cenários 1 a 4 sem os 61 valores suspeitos do IBGE (42 repetidos e 19 iguais aos de outros municípios na mesma safra) e um efeito climático plantado na produtividade, para ver o tamanho de efeito que o método detecta. e7: um modelo para cada município, treinado só com as outras safras dele.
 
 A análise SHAP, que atribuía o dano de cada evento ao clima e ao NDVI, saiu do texto do TCC e ficou como experimento (`experimentos/e5_dano_shap_por_evento.py`).
 
@@ -265,7 +264,10 @@ Valores em sacas/ha. Gerados por `executar_tudo.py`; os arquivos completos estã
 | 2 Base + clima | 8 | 4,71 (0,51) | 6,44 | 0,40 | 0,019 | 0,35 [1] | 4,24 |
 | 3 Base + NDVI | 6 | 4,76 (0,28) | 6,38 | 0,42 | 0,029 | 0,33 [1] | 4,34 |
 | 4 Completo | 12 | 4,69 (0,45) | 6,38 | 0,42 | 0,014 | 0,29 [1] | 4,19 |
-| 4 Completo, safra inteira fora | 12 | 6,05 | 7,86 | 0,11 | 0,73 | – | 6,08 |
+| 1 Base, safra inteira fora | 2 | 6,21 | 8,01 | 0,08 | 0,89 | – | 6,13 |
+| 2 Base + clima, safra inteira fora | 8 | 6,08 | 8,03 | 0,07 | 0,68 | 0,39 [0,96] | 5,93 |
+| 3 Base + NDVI, safra inteira fora | 6 | 5,85 | 7,62 | 0,17 | 0,48 | 0,20 [0,96] | 6,33 |
+| 4 Completo, safra inteira fora | 12 | 6,05 | 7,86 | 0,11 | 0,73 | 0,57 [0,96] | 6,08 |
 
 p: Wilcoxon pareado por safra (N = 35). Por observação (N = 350), todos os cenários diferiram da persistência (p < 0,0001) e nenhum do Cenário 1 (p ≥ 0,18). Contra Y(t−2), o Cenário 4 teve p = 0,021 por safra.
 
@@ -344,13 +346,19 @@ A pasta [`experimentos/`](experimentos/README.md) guarda os testes que guiaram a
 * **e4:** o balanço hídrico no modelo principal (reduz o erro do modelo completo, mas não o deixa melhor que o modelo só com controles);
 * **e5:** a atribuição do dano pelo SHAP nas safras de evento, que saiu do TCC porque atribuía parte da estimativa ao clima mesmo quando retirar o clima não muda o erro.
 
+Testes de reserva, feitos depois do texto final e que não estão no TCC:
+
+* **e6, dados limpos e sinal plantado.** Sem os 61 valores suspeitos do IBGE (42 iguais à safra anterior e 19 iguais aos de outros municípios na mesma safra, N = 289), com a safra inteira fora, o clima reduziu o erro da base de 6,68 para 5,97 sacas/ha e o NDVI para 6,01 (p = 0,04 por safra; 0,11 após Holm). Com um efeito climático conhecido somado à produtividade, o modelo com clima só o detectou com desvio padrão de 4 sacas/ha (7,53 → 6,51, p = 0,031) e com a safra fora; no K-Fold, nem esse efeito foi detectado (p = 0,18).
+* **e7, um modelo por município**, treinado só com as outras safras dele: Cenário 1 com 5,76 sacas/ha (uma safra fora por vez), contra 6,26 da persistência (p = 0,10); com clima, 6,34, pior que a base.
+* **e8, 12 municípios no Cenário 1.** Com São Sebastião do Paraíso e Monte Santo de Minas (N = 420), o Cenário 1 errou 4,49 sacas/ha, contra 6,36 da persistência (p = 0,001 por safra); com a safra inteira fora, 6,30 (p = 0,98). A conclusão do TCC se mantém.
+
 Em `experimentos/versoes_anteriores/` estão os códigos de fases anteriores (cenários separados, Sentinel-2, CHIRPS, a primeira baseline com vazamento etc.), com uma tabela explicando o que cada um fazia e por que foi substituído.
 
 ---
 
 ## 10. Limitações
 
-* Em 9 dos 10 municípios o IBGE repete o rendimento por 2 a 4 safras, sobretudo em 1999-2002; a PAM consolida estimativas de informantes locais.
+* O IBGE repete o rendimento da safra anterior em 42 casos, em 9 dos 10 municípios, 83% deles entre 1991 e 2002; a PAM consolida estimativas de informantes locais.
 * O K-Fold não mede a previsão de safras futuras; há poucos eventos extremos (uma seca e três geadas).
 * Os municípios de uma mesma safra compartilham o clima, por isso o teste por safra é o mais honesto.
 * O rendimento até 2012 é de café total; a partir de 2013, de café arábica.
@@ -387,4 +395,4 @@ A lista completa está no texto do TCC.
 
 ---
 
-**Como citar:** SILVA, L. F. V. D. *Sensoriamento remoto e aprendizado de máquina na estimativa da produtividade e do dano climático no café arábica*. Trabalho de Conclusão de Curso (Engenharia Agronômica). IFSULDEMINAS, Campus Muzambinho, 2026.
+**Como citar:** SILVA, L. F. V. D. *Contribuição do clima e do NDVI para estimar e antecipar a produtividade do café arábica com Random Forest*: avaliação com dados públicos em dez municípios da microrregião de São Sebastião do Paraíso, MG. Trabalho de Conclusão de Curso (Engenharia Agronômica). IFSULDEMINAS, Campus Muzambinho, 2026.

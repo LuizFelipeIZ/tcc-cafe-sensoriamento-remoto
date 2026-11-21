@@ -11,6 +11,11 @@ Esta pasta guarda os testes que ajudaram a chegar ao desenho final do TCC. Eles 
 | `e3_residualizacao.py` | Tirando tendência e bienalidade por regressão, o clima explica o que sobra? | Clima e NDVI explicam cerca de 31% do resíduo (38% sem 1991-2002), com a florada no topo. Mas a combinação linear + RF erra mais (4,87) que o RF só com controles (4,54). |
 | `e4_deficit_hidrico_no_modelo.py` | Vale incluir o balanço hídrico no modelo principal? | No modelo completo, 4,69 → 4,55 (p = 0,012 por safra), mas sem superar o modelo só com controles (4,54); nos controles, o déficit piora o erro (4,73). Ficou só no previsor de seca. |
 | `e5_dano_shap_por_evento.py` | Quanto do dano de cada evento o SHAP atribui ao clima e ao NDVI? | Na 1ª safra após a geada de 2021 (2022), −2,0 sacas/ha ao clima e −1,7 ao NDVI, de uma queda de 6,8. Saiu do TCC: o SHAP atribui parte da estimativa ao clima mesmo quando retirar o clima não muda o erro (Cenário 2 × Cenário 1, etapa 5f), o que confundia a leitura. |
+| `e6_dados_limpos_e_sinal_plantado.py` | O problema está no modelo ou no dado do IBGE? | Sem os 61 valores suspeitos (N = 289), com a safra inteira fora: base 6,68, clima 5,97, NDVI 6,01 (p = 0,04 por safra; 0,11 após Holm). Com um efeito climático plantado, só o de 4 sacas/ha (desvio padrão) foi detectado, e só com a safra fora (7,53 → 6,51; p = 0,031). |
+| `e7_modelo_por_municipio.py` | E se cada município tivesse o seu modelo, treinado só com as próprias safras? | Cenário 1: 5,76 (uma safra fora por vez), contra 6,26 da persistência (p = 0,10); com clima, 6,34, pior que a base (p = 0,02 por safra). |
+| `e8_doze_municipios_cenario1.py` | A base se mantém com São Sebastião do Paraíso e Monte Santo de Minas? | Com 12 municípios (N = 420), Cenário 1 com 4,49, contra 6,36 da persistência (p = 0,001); com a safra inteira fora, 6,30 (p = 0,98). Dados desses dois municípios em `dados/brutos/producao_ibge_pam_ssp_montesanto_1988_2023.csv`. |
+
+Os testes e6 a e8 foram feitos depois do texto final, como reserva para as perguntas da banca, e não estão no TCC.
 
 Os resultados ficam em `resultados/e*.json`.
 
