@@ -1,0 +1,238 @@
+{
+ "N": 350,
+ "persistencia_M": {
+  "MAE": 6.26,
+  "RMSE": 8.11,
+  "R2": 0.054
+ },
+ "kfold5_no_municipio": {
+  "C1": {
+   "MAE": 6.08,
+   "RMSE": 7.83,
+   "R2": 0.119,
+   "wilcoxon_vs_M": [
+    0.3618,
+    0.633,
+    17,
+    35
+   ],
+   "MAE_por_municipio": {
+    "Arceburgo": 5.75,
+    "Cabo Verde": 6.12,
+    "Guaranesia": 6.0,
+    "Guaxupe": 5.22,
+    "Itamogi": 7.89,
+    "Jacui": 6.2,
+    "Juruaia": 5.17,
+    "Monte Belo": 5.61,
+    "Muzambinho": 5.91,
+    "Nova Resende": 6.98
+   }
+  },
+  "C2": {
+   "MAE": 6.44,
+   "RMSE": 8.16,
+   "R2": 0.044,
+   "wilcoxon_vs_M": [
+    0.3299,
+    0.4128,
+    14,
+    35
+   ],
+   "MAE_por_municipio": {
+    "Arceburgo": 5.54,
+    "Cabo Verde": 6.49,
+    "Guaranesia": 6.17,
+    "Guaxupe": 5.0,
+    "Itamogi": 9.76,
+    "Jacui": 6.96,
+    "Juruaia": 5.21,
+    "Monte Belo": 6.48,
+    "Muzambinho": 5.69,
+    "Nova Resende": 7.07
+   },
+   "wilcoxon_vs_C1": [
+    0.0632,
+    0.1073,
+    13,
+    35
+   ],
+   "holm_safra_vs_C1": 0.3219
+  },
+  "C3": {
+   "MAE": 6.2,
+   "RMSE": 7.92,
+   "R2": 0.1,
+   "wilcoxon_vs_M": [
+    0.9455,
+    0.8398,
+    16,
+    35
+   ],
+   "MAE_por_municipio": {
+    "Arceburgo": 5.65,
+    "Cabo Verde": 5.19,
+    "Guaranesia": 6.11,
+    "Guaxupe": 5.56,
+    "Itamogi": 9.18,
+    "Jacui": 7.11,
+    "Juruaia": 5.03,
+    "Monte Belo": 5.82,
+    "Muzambinho": 5.84,
+    "Nova Resende": 6.49
+   },
+   "wilcoxon_vs_C1": [
+    0.7277,
+    0.4609,
+    14,
+    35
+   ],
+   "holm_safra_vs_C1": 0.5032
+  },
+  "C4": {
+   "MAE": 6.29,
+   "RMSE": 7.96,
+   "R2": 0.089,
+   "wilcoxon_vs_M": [
+    0.5031,
+    0.5764,
+    15,
+    35
+   ],
+   "MAE_por_municipio": {
+    "Arceburgo": 5.53,
+    "Cabo Verde": 5.6,
+    "Guaranesia": 6.13,
+    "Guaxupe": 5.14,
+    "Itamogi": 9.69,
+    "Jacui": 7.05,
+    "Juruaia": 5.1,
+    "Monte Belo": 6.51,
+    "Muzambinho": 5.74,
+    "Nova Resende": 6.43
+   },
+   "wilcoxon_vs_C1": [
+    0.2762,
+    0.2516,
+    13,
+    35
+   ],
+   "holm_safra_vs_C1": 0.5032
+  }
+ },
+ "loo_no_municipio": {
+  "C1": {
+   "MAE": 5.76,
+   "RMSE": 7.44,
+   "R2": 0.206,
+   "wilcoxon_vs_M": [
+    0.0022,
+    0.1002,
+    23,
+    35
+   ],
+   "MAE_por_municipio": {
+    "Arceburgo": 5.1,
+    "Cabo Verde": 5.4,
+    "Guaranesia": 5.51,
+    "Guaxupe": 4.46,
+    "Itamogi": 7.88,
+    "Jacui": 6.16,
+    "Juruaia": 4.77,
+    "Monte Belo": 5.97,
+    "Muzambinho": 5.67,
+    "Nova Resende": 6.71
+   }
+  },
+  "C2": {
+   "MAE": 6.34,
+   "RMSE": 8.03,
+   "R2": 0.074,
+   "wilcoxon_vs_M": [
+    0.9539,
+    0.5118,
+    15,
+    35
+   ],
+   "MAE_por_municipio": {
+    "Arceburgo": 5.41,
+    "Cabo Verde": 6.04,
+    "Guaranesia": 5.78,
+    "Guaxupe": 5.39,
+    "Itamogi": 9.68,
+    "Jacui": 6.6,
+    "Juruaia": 4.96,
+    "Monte Belo": 6.81,
+    "Muzambinho": 5.73,
+    "Nova Resende": 7.05
+   },
+   "wilcoxon_vs_C1": [
+    0.0005,
+    0.0182,
+    9,
+    35
+   ],
+   "holm_safra_vs_C1": 0.0546
+  },
+  "C3": {
+   "MAE": 6.08,
+   "RMSE": 7.72,
+   "R2": 0.144,
+   "wilcoxon_vs_M": [
+    0.3307,
+    0.728,
+    18,
+    35
+   ],
+   "MAE_por_municipio": {
+    "Arceburgo": 5.23,
+    "Cabo Verde": 5.32,
+    "Guaranesia": 6.0,
+    "Guaxupe": 5.46,
+    "Itamogi": 8.59,
+    "Jacui": 6.98,
+    "Juruaia": 4.78,
+    "Monte Belo": 6.35,
+    "Muzambinho": 5.58,
+    "Nova Resende": 6.46
+   },
+   "wilcoxon_vs_C1": [
+    0.0556,
+    0.1397,
+    14,
+    35
+   ],
+   "holm_safra_vs_C1": 0.1397
+  },
+  "C4": {
+   "MAE": 6.33,
+   "RMSE": 8.0,
+   "R2": 0.081,
+   "wilcoxon_vs_M": [
+    0.6066,
+    0.4809,
+    14,
+    35
+   ],
+   "MAE_por_municipio": {
+    "Arceburgo": 5.25,
+    "Cabo Verde": 5.52,
+    "Guaranesia": 6.03,
+    "Guaxupe": 5.41,
+    "Itamogi": 9.91,
+    "Jacui": 6.99,
+    "Juruaia": 5.01,
+    "Monte Belo": 7.04,
+    "Muzambinho": 5.65,
+    "Nova Resende": 6.45
+   },
+   "wilcoxon_vs_C1": [
+    0.0012,
+    0.02,
+    12,
+    35
+   ],
+   "holm_safra_vs_C1": 0.0546
+  }
+ }
+}

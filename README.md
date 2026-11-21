@@ -127,7 +127,9 @@ tcc-cafe-sensoriamento-remoto/
 │   ├── 5d_figuras_metodologia.py               Figuras 1 e 2, séries
 │   ├── 5e_numeros_do_texto.py                  números citados no texto
 │   ├── 5f_cenarios.py                          cenários 1 a 6 (Tabelas 1 e 3)
-│   └── 5g_series_por_cenario.py                real x estimada em 4 municípios (Figuras 3 a 6, 9 e 10)
+│   ├── 5g_series_por_cenario.py                real x estimada em 4 municípios (Figuras 3 a 6, 9 e 10)
+│   ├── 5h_eventos_slides.py                    safras de seca e geada, figuras dos slides
+│   └── 5i_robustez.py                          safra fora nos cenários 1 a 4, IC por safra, max_features
 │
 ├── experimentos/                  testes que guiaram as escolhas + versões anteriores
 ├── extras/                        imagens de satélite para a apresentação (GEE)
@@ -239,6 +241,11 @@ O modelo **nunca** usa o rendimento da safra que estima. A média móvel é calc
 * **5e.** Números citados no texto que não estão nas outras saídas (resumo do clima e hiperparâmetros do modelo final).
 * **5f.** Os seis cenários: MAE, RMSE e R² dos cenários 1 a 4; Wilcoxon de cada cenário contra a persistência e dos cenários 2, 3 e 4 contra o Cenário 1, com ajuste de Holm sobre as 6 comparações (3 cenários × observação e safra); produtividade real × estimada nas safras de evento; R² dos previsores.
 * **5g.** Uma figura por cenário com a produtividade real (IBGE) e a estimada ao longo da série em Guaxupé, Muzambinho, Nova Resende e Cabo Verde, com a persistência histórica, as safras após geada ou seca sombreadas e o MAE do cenário em cada município. A faixa entre a real e a estimada é o erro (laranja: superestimativa; azul: subestimativa). Duas versões: 1 × 4 painéis para o texto e 2 × 2, com os eventos rotulados, para os slides (`resultados/figuras/apresentacao/`).
+
+* **5h.** Figuras da apresentação: real, estimada e persistência nas safras de seca e de geada em Nova Resende e Cabo Verde, com os valores em tabela, e o resumo das safras de evento (Tabela 3) em gráfico.
+* **5i.** Robustez da comparação entre os cenários 1 a 4: (1) **safra inteira fora** do treino para os quatro cenários, com Wilcoxon contra a persistência e contra o Cenário 1 (Holm sobre 6 testes); (2) **intervalo de confiança de 95%** da diferença de MAE contra o Cenário 1, por bootstrap de safras (10.000 repetições); (3) K-Fold aninhado com **sorteio de variáveis** (`max_features = "sqrt"`), como no Random Forest de Breiman (2001). O 4b também registra, à parte, o previsor de seca na safra de 2021 (florada de 2020, maior déficit da série).
+
+* **e6 e e7 (reserva para a banca).** e6: os cenários 1 a 4 sem os 61 valores suspeitos do IBGE (42 repetidos e 19 iguais aos de outros municípios na mesma safra) e um efeito climático plantado na produtividade, para ver o tamanho de efeito que o método detecta. e7: um modelo para cada município, treinado só com as outras safras dele.
 
 A análise SHAP, que atribuía o dano de cada evento ao clima e ao NDVI, saiu do texto do TCC e ficou como experimento (`experimentos/e5_dano_shap_por_evento.py`).
 

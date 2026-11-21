@@ -135,6 +135,12 @@ for nome, cfg in PREVISORES.items():
                        *[saida["geada_sem_2000_2001"][k] for k in
                          ["N", "MAE_rf", "MAE_so_controles", "MAE_baseline_M", "p_wilcoxon_rf_vs_baseline"]]])
 
+# Verificação adicional: safra de 2021, após a florada de 2020, a de maior déficit
+# hídrico da série. Fica fora da Tabela 2 (teste do previsor: 2014 a 2017).
+r21 = janela_expansiva(df, PREVISORES["seca"]["variaveis"], [2021])
+saida["seca_safra_2021"] = {**resumir(r21), **{f"media_{c}": round(float(r21[c].mean()), 1)
+                                                for c in ["real", "rf", "so_controles", "baseline_M"]}}
+
 salvar_json(saida, "4b_previsores.json")
 pd.DataFrame(tabela, columns=["previsor", "safras", "N", "MAE_RF", "MAE_so_controles", "MAE_baseline",
                               "p_Wilcoxon_RF_vs_baseline"]).to_csv(RESULTADOS / "tabela2_previsores.csv", index=False)

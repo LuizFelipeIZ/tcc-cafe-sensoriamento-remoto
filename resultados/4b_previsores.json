@@ -111,5 +111,25 @@
     "erro_baseline_M": 2.8
    }
   }
+ },
+ "seca_safra_2021": {
+  "N": 10,
+  "MAE_rf": 7.59,
+  "MAE_so_controles": 10.55,
+  "MAE_baseline_M": 8.88,
+  "p_wilcoxon_rf_vs_baseline": 0.232,
+  "erro_percentual_rf": 39.8,
+  "cobertura_p10_p90_pct": 30.0,
+  "MAE_por_safra": {
+   "2021": {
+    "erro_rf": 7.59,
+    "erro_so_controles": 10.55,
+    "erro_baseline_M": 8.88
+   }
+  },
+  "media_real": 21.0,
+  "media_rf": 28.6,
+  "media_so_controles": 31.5,
+  "media_baseline_M": 29.9
  }
 }
